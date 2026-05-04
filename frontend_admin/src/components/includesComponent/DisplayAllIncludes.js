@@ -73,7 +73,7 @@ const columns=[
 const tabel = useMaterialReactTable({
     renderTopToolbarCustomActions:()=>{
         return(<Typography variant='h6' >
-            <img className={classes.imageStyle} src="./logo.png" alt="logo" />
+            <img className={classes.imageStyle} src="/logo.png" alt="logo" />
             <span className={classes.headingText}>Include List</span>
         </Typography>)
     },

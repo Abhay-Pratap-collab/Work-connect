@@ -7,7 +7,6 @@ export const useStyles=(makeStyles((theme)=>({
         padding:'20px',
         display:'flex',
         margin:10,
-    //    marginLeft:'230px',
         flexDirection:'column',
         justifyContent:'space-between',
         boxSizing:'border-box',

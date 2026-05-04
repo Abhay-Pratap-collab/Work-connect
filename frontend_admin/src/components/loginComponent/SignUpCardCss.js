@@ -1,80 +1,123 @@
 import { makeStyles } from "@mui/styles";
-export const useStyles=(makeStyles((theme)=>({
-    box:{
-        width:'450px',
-        height:'auto',
-        boxSizing:'border-box',
-        padding:'25px',
-        display:'flex',
-        background:'white',
-        flexDirection:'column',
-        alignItems:'center',
-        border:'0.5px solid rgb(221, 223, 218)',
-        borderRadius:'8px',
-        boxShadow:'0px 0px 10px rgb(0,0,0,0.2) '
-    },
-    imageStyle:{
-        width:"20px",
-        marginRight:'8px'
-    },
-    centerStyle:{
-                 display:'flex',
-                 width:'450px',
-                 
-    },
-    signinText:{
-        fontSize:'35px',
-        fontWeight:'700'
 
-    },
-    inputText:{
-        marginBottom:'7px',
-        color:'grey',
-        fontSize:'15px'
+export const useStyles = makeStyles({
 
+    root: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: 'center',
+        background: `radial-gradient(
+      circle at center,
+      hsl(219, 37%, 16%) 0%,
+      hsl(220, 35%, 3%) 70%
+    )`,
+        color: 'white',
+        height: '100vh'
     },
-    input:{
+
+    container: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        boxSizing: "border-box",
+        color: '#fff',
         borderRadius: 10,
-    backgroundColor: '#F3F6F9',
-    border: '1px solid',
-    borderColor: '#7e8185',
-    fontSize: 16,
-    width: '100%',
-    padding: '10px 12px',
-    boxSizing:'border-box',
-    transition: 'border-color',
-    transition:'background-color',
-    transition:'box-shadow'
+        border: '1px solid hsla(220, 20%, 25%, 0.6)',
+        height: 'auto',
+        width: '28%',
+        padding: "2rem",
+        background: "hsla(220, 30%, 5%, 0.5)",
+        boxShadow: 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px'
+    },
+    heading: {
+        display: "flex",
+        alignItems: "center",
+        width: "50%",
+    },
+    imageStyle: {
+        width: 40,
+        height: 40,
+    },
+    head: {
+        display: "flex",
+        alignItems: "center",
+        fontFamily: "Raleway",
+        fontSize: "28px",
+        color: "#4876EF",
+        fontWeight: "bold",
+        marginRight: "10px"
+    },
+    headingText: {
+        color: 'white',
+        fontStyle: "revert-layer",
+        fontSize: 18
+    },
+    checkbox: {
+        color: "grey !important",
 
+        "&.Mui-checked": {
+            color: "#1878ed !important"
+        }
     },
-    signinButton:{
-        background:'rgb(22, 5, 99)',
-        borderRadius: 10,
-        color:'white',
-        position: 'relative',
-    border: '1px solid',
-    borderColor: '#E0E3E7',
-    fontSize: 15,
-    fontWeight:'600',
-    width: '100%',
-    padding: '10px 12px',
+    grids: {
+        margin: "5px",
+    },
+    input: {
+        "& .MuiOutlinedInput-root": {
+            backgroundColor: "#05070a",
+            borderRadius: 10,
+            height: "2.5rem",
+            margin: 0,
+            padding: 0,
 
+            // 🔥 Hover state
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#4d5057"
+            },
+
+            // 🔥 Focus state
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#1878ed",
+                borderWidth: "2px"
+            }
+        },
+
+        "& .MuiOutlinedInput-input": {
+            color: "#fff",
+            height: ".5rem",
+            borderRadius: 10
+        },
+
+        // Default border
+        "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "hsla(220, 20%, 25%, 0.6)"
+        }
     },
-    gfButton:{
-         borderRadius: 10,
-        position: 'relative',
-    border: '1px solid',
-    borderColor: '#E0E3E7',
-    fontSize: 15,
-    fontWeight:'600',
-    width: '100%',
-    padding: '10px 12px',
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center'
+    button: {
+        backgroundColor: "#ffffff !important",
+        color: "#000000 !important",
+        borderRadius: "10px !important",
+
+        "&:hover": {
+            backgroundColor: "#808080 !important",
+            color: "#000000 !important"
+        }
     },
-    headingText:{
-        fontSize:'15px',
-        fontWeight:'600',
+    btns: {
+        backgroundColor: "#100f0f !important",
+        color: "white !important",
+        border: "1px solid rgba(255,255,255,0.3) !important",
+        borderRadius: "10px !important",
+
+        "&:hover": {
+            backgroundColor: "black !important",
+            border: "1px solid rgba(255,255,255,0.6) !important"
+        }
     },
-})))
+    icons: {
+        width: 20,
+        height: 20,
+        marginRight: 5
+    }
+
+})

@@ -115,7 +115,7 @@ export default function DisplayAllCity() {
           <div style={{ display: "flex", gap: "5px" }}>
             <Tooltip title="Edit Icon">
               <IconButton onClick={() => handleEditIcon(row)}>
-                <img src="image-editing.png" style={{ width: 25 }} />
+                <img src="/image-editing.png" style={{ width: 25 }} />
               </IconButton>
             </Tooltip>
 

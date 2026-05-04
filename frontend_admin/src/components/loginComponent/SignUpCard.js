@@ -1,48 +1,85 @@
-import { Checkbox, FormControl, FormControlLabel,Button, Grid, InputLabel, TextField } from "@mui/material"
-import { useNavigate } from "react-router"
-import { useStyles } from "./SignUpCardCss"
-export default function SignUpCard()
-{
-    const Navigate=useNavigate()
-    const classes=useStyles()
-    return(<div className={classes.box} >
-        <Grid container spacing={2.5} >
-            <Grid size={12} >
-                <div className={classes.signinText} >Sign up</div>
-            </Grid>
-            <Grid size={12} >
-                <InputLabel>Full name</InputLabel>
-                <TextField color="primary" fullWidth placeholder="Jon snow" size="small"/>
-            </Grid>
-            <Grid size={12} >
-                <InputLabel>Email</InputLabel>
-                <TextField color="primary" fullWidth placeholder="name@gmail.com" size="small"/>
-            </Grid>
-            <Grid size={12} >
-                <InputLabel>Password</InputLabel>
-                <TextField fullWidth placeholder="atleast 8 characters" size="small"/>
-            </Grid>
-            <Grid size={12} >
-                <FormControlLabel control={<Checkbox />} label="I want to receive updates via email" />
-             </Grid>
-             <Grid size={12}>
-                        <button className={classes.signinButton} >Sign up</button>
-                    </Grid>
-                    <Grid size={12} style={{display:'flex',alignItems:'center',justifyContent:"space-between"}} >
-                        <hr style={{width:'47%',height:'1px',border:'none',backgroundColor:'rgb(194, 199, 199)'}}/><span style={{marginBottom:"6px"}}> or </span><hr style={{width:'47%',height:'1px',border:'none',backgroundColor:'rgb(194, 199, 199)'}}/>
-                    </Grid>
-                    <Grid size={12} >
-                        <button className={classes.gfButton} ><img src="google.png" className={classes.imageStyle} /><span  >Sign up with Google</span></button>
-                    </Grid>
+import { useStyles } from "./SignUpCardCss";
+import { Grid, TextField, Button, Checkbox, FormLabel } from "@mui/material"
+import { useNavigate } from "react-router-dom";
 
-                    <Grid size={12} >
-                        <button className={classes.gfButton} ><img src="facebook.png" className={classes.imageStyle} /><span>Sign up with Facebook</span></button>
-                    </Grid>
-                    <Grid size={12} >
-                        <div style={{fontSize:'14.5px',textAlign:'center'}}>Already have an account?<span style={{fontWeight:'600'}} onClick={()=>Navigate('/loginpage')} > Sign in</span></div>
-                    </Grid>
+export default function SignUpCard() {
 
-        </Grid>
 
-    </div>)
+    const classes = useStyles()
+
+    const navigate = useNavigate()
+
+    return (
+        <div className={classes.root}>
+            <div className={classes.container}>
+
+                <div className={classes.head}>
+                    <img className={classes.imageStyle} src="/wcll.png" alt="logo" />
+                    <span className={classes.headingText}>Work Connect</span>
+                </div>
+
+                <div className={classes.headingText}>
+                    <h1>Sign up</h1>
+                </div>
+
+                <div className={classes.grids}>
+                    <Grid container spacing={1}>
+                        <Grid size={12} >
+                            <FormLabel htmlFor="fn" style={{ color: "grey" }}>Full name</FormLabel>
+                        </Grid>
+                        <Grid size={12} >
+                            <TextField id="fn" className={classes.input} variant="outlined" placeholder="Vin Disele" fullWidth />
+                        </Grid>
+
+                        <Grid size={12} >
+                            <FormLabel htmlFor="email" style={{ color: "grey" }}>Email</FormLabel>
+                        </Grid>
+                        <Grid size={12} >
+                            <TextField id="email" className={classes.input} variant="outlined" placeholder="xyz@gmail.com" fullWidth />
+                        </Grid>
+
+                        <Grid size={12} >
+                            <FormLabel htmlFor="password" style={{ color: "grey" }}>Password</FormLabel>
+                        </Grid>
+                        <Grid size={12} >
+                            <TextField id="password" className={classes.input} variant="outlined" placeholder="......" fullWidth />
+                        </Grid>
+
+
+                        <Grid size={12}>
+                            <Checkbox className={classes.checkbox} />
+                            <FormLabel style={{ color: "white" }}>I want to receive updates via email</FormLabel>
+                        </Grid>
+                        <Grid size={12} >
+                            <Button className={classes.button} variant="contained" fullWidth>Sign up</Button>
+                        </Grid>
+
+                        <Grid size={12}>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <hr style={{ flex: 1, border: ".5px solid grey" }} />
+                                <span style={{ margin: "0 10px", color: "grey" }}>or</span>
+                                <hr style={{ flex: 1, border: ".5px solid grey" }} />
+                            </div>
+                        </Grid>
+
+                        <Grid size={12}>
+                            <Button className={classes.btns} variant="outlined" fullWidth><img className={classes.icons} src="google.png" alt="google" />Sign in with Google</Button>
+                        </Grid>
+                        <Grid size={12}>
+                            <Button className={classes.btns} variant="outlined" fullWidth><img className={classes.icons} src="fb.png" alt="facebook" />Sign in with Facebook</Button>
+                        </Grid>
+
+                        <Grid size={12} >
+                            <p style={{ margin: "0 10px", color: "white", textAlign: "center" }}>
+                                Already have an account?
+                                <span onClick={() => navigate("/login")} style={{ cursor: 'pointer', color: 'white' }}> Sign in</span>
+                            </p>
+                        </Grid>
+                    </Grid>
+                </div>
+
+
+            </div>
+        </div>
+    )
 }

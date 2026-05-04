@@ -3,78 +3,55 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { MdArrowBackIos } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+
+import { serverURL } from "../../services/FetchNodeServices";
 import { useRef, useState } from "react";
-import { serverURL } from "../services/FetchNodeServices";
-export default function FirstComponent() {
-  const [mouseState, setMouseState] = useState(false)
-  const [mouseStateFor, setMouseStateFor] = useState(false)
-  //  const pic=[{"one.png","two.png","three.png"}]
-  const pic = [
-    {
-      id: 1,
-      heading: "Easy Service Booking",
-      description:
-        "Users can quickly book home services like electricians, plumbers, cleaners, and more in just a few taps. The interface is simple and user-friendly, making booking hassle-free.",
-      image: "1.webp",
-    },
-    {
-      id: 2,
-      heading: "Verified Professionals",
-      description:
-        "All service providers are verified with proper background checks, ensuring safety, trust, and quality service for customers.",
-      image: "2.webp",
-    },
-    {
-      id: 2,
-      heading: "Real-Time Availability",
-      description:
-        "Customers can check real-time availability of professionals and schedule services at their convenience.",
-      image: "3.webp",
-    },
-  ];
+
+export default function CardSlider({data}) {
+  const [mouseState,setMouseState]=useState(false)
+  const [mouseStateFor,setMouseStateFor]=useState(false)
+  
   var settings = {
     dots: true,
     infinite: true,
     speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
+     autoplay: true,
+    autoplaySpeed: 5000,
+
     arrows: false,
   };
   const mySlider = useRef();
   const showSlide = () => {
-    return pic.map((item) => {
+    return data.map((item) => {
       return (
         <div
-          key={item.id}
           style={{
             width: "100%",
-            // height: "100%",
-            height: 400,
+            height: "100%",
             borderRadius: 20,
-            position: 'relative',
+            position:'relative',
             overflow: "hidden",
-            background: "linear-gradient(to top, black, transparent)",
+             background: "linear-gradient(to top, black, transparent)",
           }}
         >
-          {/* The Image */}
+          
           <img
             src={`${serverURL}/images/${item.image}`}
             style={{
-              width: '100%',
-              height: 400,
+              width: "100%",
+              height: "100%",
               objectFit: "cover",
               borderRadius: 20,
-              display: 'block'
-
-
+           display:'block'
+        
+              
             }}
           />
-          {/* The Dark Overlay Gradient */}
-
-
-          <div
+<div
             style={{
               position: "absolute",
               color: "#5be49b",
@@ -92,7 +69,7 @@ export default function FirstComponent() {
             FEATURED APP
 
           </div>
-          <div
+         <div
             style={{
               position: "absolute",
               color: "#fff",
@@ -110,14 +87,14 @@ export default function FirstComponent() {
             {item.heading}
           </div>
 
-          <div
+         <div
             style={{
               position: "absolute",
               color: "#fff",
               fontWeight: 350,
               fontSize: "1rem",
               lineHeight: 1.5,
-
+             
               zIndex: 10,
 
               left: '5%',
@@ -142,14 +119,13 @@ export default function FirstComponent() {
   };
 
   return (
-    <div style={{ display: "flex" ,}}>
+    <div style={{ display: "flex", margin:2,width:'100%' }}>
       <div
         style={{
           width: "100%",
-          height: "100%",
+          height: "40%",
           borderRadius: 20,
           position: "relative",
-          // background:'red'
         }}
       >
         <div
@@ -159,19 +135,21 @@ export default function FirstComponent() {
             top: 30,
             right: 80,
             cursor: "pointer",
-            width: 30,
-            height: 30,
-            borderRadius: 15,
-            display: 'flex',
-            background: mouseState ? 'rgba(255,255,255, 0.2)' : '',
-            justifyContent: 'center',
-            alignItems: 'center',
-
+            width:30,
+            height:30,
+            borderRadius:15,
+            display:'flex',
+            background:mouseState?'rgba(255,255,255, 0.2)':'',
+            justifyContent:'center',
+            alignItems:'center',
+            
+            
           }}
-          onMouseDown={() => setMouseState(true)}
-          onMouseUp={() => setMouseState(false)}
+          onMouseDown={()=>setMouseState(true)}
+          onMouseUp={()=>setMouseState(false)}
         >
-          <MdArrowBackIos onClick={handleBack} style={{ color: "#fff" }} />
+          
+          <MdArrowBackIos onClick={handleBack} style={{zIndex:-1, color: "#fff" }} />
         </div>
         <div
           style={{
@@ -180,16 +158,18 @@ export default function FirstComponent() {
             top: 30,
             right: 40,
             cursor: "pointer",
-            display: 'flex',
-            width: 30,
-            height: 30,
-            borderRadius: 15,
-            background: mouseStateFor ? 'rgba(255,255,255, 0.3)' : '',
-            justifyContent: 'center',
-            alignItems: 'center',
+             display:'flex',
+               width:30,
+            height:30,
+            borderRadius:15,
+            background: mouseStateFor?'rgba(255,255,255, 0.3)':'',
+            justifyContent:'center',
+            alignItems:'center',
+          
           }}
-          onMouseDown={() => setMouseStateFor(true)}
-          onMouseUp={() => setMouseStateFor(false)}
+          onMouseDown={()=>setMouseStateFor(true)}
+          onMouseUp={()=>setMouseStateFor(false)}
+       
         >
           <MdArrowForwardIos
             onClick={handleForward}
@@ -198,10 +178,12 @@ export default function FirstComponent() {
         </div>
 
         <Slider ref={mySlider} {...settings}  >
-          {showSlide()}
+      {showSlide()}    
         </Slider>
       </div>
-
+      
     </div>
   );
 }
+
+

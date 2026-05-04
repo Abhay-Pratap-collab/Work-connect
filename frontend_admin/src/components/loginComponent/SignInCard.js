@@ -1,79 +1,83 @@
-import { Checkbox, FormControl, FormControlLabel,Button, Grid, InputLabel, TextField } from "@mui/material"
-import { useStyles } from "./SignInCardCss"
-import { useNavigate } from "react-router"
-import { postData } from "../../services/FetchNodeServices"
-import { useEffect, useState } from "react"
+import { useStyles } from "./SignInCardCss";
+import { Grid, TextField, Button, Checkbox, FormLabel } from "@mui/material"
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { postData } from "../../services/FetchNodeServices";
 
-export default function SignInCard({rowdata})
-{
-    const Navigate=useNavigate()
-    const classes=useStyles()
-    const [emailid,setEmailId]=useState('')
-    const [mobileno,setMobileNo]=useState('')
-    const [password,setPassword] = useState('')
-   useEffect(() => {
-        if (rowdata) {
-            setEmailId(rowdata.emailid || '');
-            setMobileNo(rowdata.mobileno || '');
-            setPassword(rowdata.password || '');
-        }
-    }, [rowdata]);
-    const handleSubmit = async ()=>{
-        var body = {emailid,password,mobileno}
-        var res = await postData('admins/chk_admin_password',body)
-       
-            if(res.status)
-            {
-                alert('complete')
-            }
-           else{
-            alert ('error')
-           }
-       
+
+export default function SignInCard() {
+
+    const [emailId,setEmailId]=useState('')
+    const [password,setPassword]=useState('')
+
+
+    const classes = useStyles()
+
+    const navigate = useNavigate()
+
+    const handleChkPassword=async()=>{
+        var res=await postData('admins/chk_admin_password',{emailid:emailId,password})
+        alert(res.status)    
+        
+
     }
+    return (
 
+        <div className={classes.container}>
+            <div className={classes.headingText}>
+                <h1>Sign in</h1>
+            </div>
 
-    return(<div className={classes.box} >
-        <Grid container spacing={2.5} >
-            <Grid size={12} >
-                <div className={classes.signinText} >Sign In</div>
-            </Grid>
-            <Grid size={12} style={{height:'8px'}}>
-                <InputLabel>Email</InputLabel>
-            </Grid>
-            <Grid size={12} >
-                <TextField color="primary" fullWidth placeholder="name@gmail.com" size="small" value={emailid} onChange={(e)=> setEmailId(e.target.value)}/>
-            </Grid>
-            <Grid size={12} style={{height:'8px'}} >
-                <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',height:'20px'}}>
-                <InputLabel>Password</InputLabel>
-                <div className={classes.headingText}>Forgot your password?</div>
-                </div>
-            </Grid>
-            <Grid size={12} >
-                <TextField fullWidth placeholder="atleast 8 characters" size="small" value={password} onChange={(e)=> setPassword(e.target.value)} />
-            </Grid>
-            <Grid size={12} style={{height:'25px'}} >
-                <FormControlLabel control={<Checkbox />} label="Remember me" />
-             </Grid>
-             <Grid size={12}>
-                        <button className={classes.signinButton} onClick={handleSubmit} >Sign in</button>
+            <div className={classes.grids}>
+                <Grid container spacing={1}>
+                    <Grid size={12} >
+                        <FormLabel htmlFor="email" style={{ color: "grey" }}>Email</FormLabel>
                     </Grid>
                     <Grid size={12} >
-                        <div style={{fontSize:'14.5px',textAlign:'center'}}>Don't have an account?<span style={{fontWeight:'600'}} onClick={()=>Navigate('/signupcard')} > Sign up</span></div>
-                    </Grid>
-                    <Grid size={12} style={{display:'flex',alignItems:'center',justifyContent:"space-between"}} >
-                        <hr style={{width:'47%',height:'1px',border:'none',backgroundColor:'rgb(194, 199, 199)'}}/><span style={{marginBottom:"6px"}}> or </span><hr style={{width:'47%',height:'1px',border:'none',backgroundColor:'rgb(194, 199, 199)'}}/>
+                        <TextField onChange={(e)=>setEmailId(e.target.value)} id="email" className={classes.input} variant="outlined" placeholder="abc@gmail.com" fullWidth />
+
                     </Grid>
                     <Grid size={12} >
-                        <button className={classes.gfButton} ><img src="google.png" className={classes.imageStyle} /><span  >Sign in with Google</span></button>
-                    </Grid>
-
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 10 }}>
+                            <FormLabel htmlFor="password" style={{ color: "grey" }}>Password</FormLabel>
+                            <FormLabel style={{ color: "white", textAlign: 'center', fontSize: 14 }}>Forgot your password?</FormLabel>
+                        </div></Grid>
                     <Grid size={12} >
-                        <button className={classes.gfButton} ><img src="facebook.png" className={classes.imageStyle} /><span>Sign in with Facebook</span></button>
+                        <div >
+                            <TextField onChange={(e)=>setPassword(e.target.value)} id="password" className={classes.input} variant="outlined" placeholder="......" fullWidth />
+                        </div>
+                    </Grid>
+                    <Grid size={6}>
+                        <Checkbox className={classes.checkbox} />
+                        <FormLabel style={{ color: "white" }}>Remember me</FormLabel>
+                    </Grid>
+                    <Grid size={12} >
+                        <Button onClick={handleChkPassword} className={classes.button} variant="contained" fullWidth>Sign in</Button>
+                    </Grid>
+                    <Grid size={12} >
+                        <p style={{ margin: "0 10px", color: "white", textAlign: "center" }}>
+                            Don't have an account?
+                            <span onClick={() => navigate("/signup")} style={{ cursor: 'pointer', color: 'white' }}> Sign up</span>
+                        </p>
+                    </Grid>
+                    <Grid size={12}>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <hr style={{ flex: 1, border: ".5px solid grey" }} />
+                            <span style={{ margin: "0 10px", color: "grey" }}>or</span>
+                            <hr style={{ flex: 1, border: ".5px solid grey" }} />
+                        </div>
                     </Grid>
 
-        </Grid>
+                    <Grid size={12}>
+                        <Button className={classes.btns} variant="outlined" fullWidth><img className={classes.icons} src="google.png" alt="google" />Sign in with Google</Button>
+                    </Grid>
+                    <Grid size={12}>
+                        <Button className={classes.btns} variant="outlined" fullWidth><img className={classes.icons} src="fb.png" alt="facebook" />Sign in with Facebook</Button>
+                    </Grid>
+                </Grid>
+            </div>
 
-    </div>)
+
+        </div>
+    )
 }
