@@ -13,7 +13,9 @@ import ExpertEdit from "./ExpertsEdit";
 import ExpertIconEdit from "./ExpertsIconEdit";
 // import PanExperts from "./PanExperts";
 import DocumentEdit from "./DocumentEdit";
+import AddIcon from '@mui/icons-material/Add';
 
+import { useNavigate } from "react-router";
 export default function DisplayExpert() {
   var classes = useStyle();
   const [openStatus, setOpenStatus] = useState(false);
@@ -26,6 +28,8 @@ export default function DisplayExpert() {
   const [refresh, setRefresh] = useState(false)
   const [iconOpenStatus, setIconOpenStatus] = useState(false);
   const [expertsList, setExpertsList] = useState([])
+     const navigate=useNavigate();
+  
   useEffect(() => {
     fetchExpertsData()
   }, []);
@@ -97,7 +101,7 @@ export default function DisplayExpert() {
   const showExperts = () => {
     return <MaterialReactTable
       columns={[
-        { accessorKey: "expertid", header: "expertsId", size: 30 },
+        { accessorKey: "expertid", header: "expertsId", size: 10 },
         {
           header: "Category/Subcategory",
           accessorFn: (row) => `${row.categoryname} / ${row.subcategoryname}`,
@@ -118,7 +122,7 @@ export default function DisplayExpert() {
           id: "contact"
         },
         // { header: "fathername", accessorKey: "fathername" },
-        { header: "Gender", accessorKey: "gender" },
+        { header: "Gender", accessorKey: "gender",size: 10 },
         // { header: "AdharID", accessorKey: "adharid" },
         // { header: "PanID", accessorKey: "panid" },
         // { header: "vehicleid", accessorKey: "vehicleid" },
@@ -131,7 +135,7 @@ export default function DisplayExpert() {
 
         // { header: "Aadhar", Cell: ({ renderedCellValue, row }) => <div><img src={`${serverURL}/images/${row.original.adharicon}`} style={{ width: 40 }} /></div> },
         {
-          header: "Photograpgh",
+          header: "Photograpgh",size: 10,
           Cell: ({ row }) => (
             <Tooltip title="Click to Change Photo">
               <IconButton onClick={() => handleEditIcon(row)}>
@@ -159,14 +163,31 @@ export default function DisplayExpert() {
       data={expertsList}
       renderTopToolbarCustomActions={() => {
         return (
+                      <div style={{display:"flex",justifyContent:'space-between',width:'100%',alignItems:'center',marginTop:'-1px'}}>
+
+
           <div
             style={{
               display: "flex",
               alignItems: "center",
               flexDirection: "column"
             }}>
-            <img src="/logo.png" className={classes.imageStyle} />
+            {/* <img src="/logo.png" className={classes.imageStyle} /> */}
             <span className={classes.haedingText}>Experts List</span>
+
+          </div>
+           <IconButton  
+                    
+                     onClick={() => {
+                    // Logic to open a modal or add a row
+                      navigate('/dashboard/expert')
+                  }}
+                    >
+                       <Tooltip title="Add New Experts">
+                              <AddIcon />
+                              </Tooltip>
+          
+                    </IconButton>
 
           </div>
         )
@@ -178,7 +199,7 @@ export default function DisplayExpert() {
           <div style={{ display: "flex", gap: "2px" }}>
             <Tooltip title="Edit Icon" onClick={() => handleEditDocument(row)}>
               <IconButton >
-                <img src="image-editing.png" style={{ width: 25 }} />
+                <img src="/image-editing.png" style={{ width: 25 }} />
               </IconButton>
             </Tooltip>
 

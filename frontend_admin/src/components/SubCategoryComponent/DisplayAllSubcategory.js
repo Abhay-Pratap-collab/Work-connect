@@ -13,6 +13,9 @@ import SubcategoryEdit from "./SubcategoryEdit";
 import SubCategoryIconEdit from "./SubCategoryIconEdit";
 
 import Swal from "sweetalert2";
+import AddIcon from '@mui/icons-material/Add';
+
+import { useNavigate } from "react-router";
 
 
 
@@ -24,6 +27,8 @@ export default function DisplayAllSubcategory() {
   const [refresh, setRefresh] = useState(false)
   const [iconOpenStatus, setIconOpenStatus] = useState(false);
   const [categoryList, setCategoryList] = useState([])
+     const navigate=useNavigate();
+  
   const fetchAllCategory = async () => {
     var res = await getData("category/fetch_all_category")
     setCategoryList(res.data)
@@ -106,15 +111,30 @@ export default function DisplayAllSubcategory() {
       data={subcategoryList}
       renderTopToolbarCustomActions={() => {
         return (
+                      <div style={{display:"flex",justifyContent:'space-between',width:'100%',alignItems:'center',marginTop:'-1px'}}>
+
           <div
             style={{
               display: "flex",
               alignItems: "center",
               flexDirection: "column"
             }}>
-            <img src="/logo.png" className={classes.imageStyle} />
+            {/* <img src="/logo.png" className={classes.imageStyle} /> */}
             <span className={classes.haedingText}>SubCategory List</span>
 
+          </div>
+          <IconButton  
+                    
+                     onClick={() => {
+                    // Logic to open a modal or add a row
+                      navigate('/dashboard/subcategory')
+                  }}
+                    >
+                       <Tooltip title="Add New Subcategory">
+                              <AddIcon />
+                              </Tooltip>
+          
+                    </IconButton>
           </div>
         )
       }}
@@ -126,7 +146,7 @@ export default function DisplayAllSubcategory() {
           <div style={{ display: "flex", gap: "5px" }}>
             <Tooltip title="Edit Icon">
               <IconButton onClick={() => handleEditIcon(row)}>
-                <img src="image-editing.png" style={{ width: 25 }} />
+                <img src="/image-editing.png" style={{ width: 25 }} />
               </IconButton>
             </Tooltip>
 

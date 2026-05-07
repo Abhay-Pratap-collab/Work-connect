@@ -12,6 +12,9 @@ import CityEdit from "./CityEdit";
 import CityIconEdit from "./CityIconEdit";
 import Swal from "sweetalert2";
 
+import AddIcon from '@mui/icons-material/Add';
+
+import { useNavigate } from "react-router";
 
 
 export default function DisplayAllCity() {
@@ -21,7 +24,7 @@ export default function DisplayAllCity() {
   const [rowData, setRowData] = useState([])
   const [refresh, setRefresh] = useState(false)
   const [iconOpenStatus, setIconOpenStatus] = useState(false);
-
+   const navigate=useNavigate();
   useEffect(() => {
     fetchCityData();
   }, []);
@@ -94,21 +97,45 @@ export default function DisplayAllCity() {
       ]}
       data={cityList}
       renderTopToolbarCustomActions={() => {
+        
         return (
+            
+            <div style={{display:"flex",justifyContent:'space-between',width:'100%',alignItems:'center',marginTop:'-5px'}}>
+
+         
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              flexDirection: "column"
+              flexDirection: "column",
+              // background:'yellow'
             }}>
-            <img src="/logo.png" className={classes.imageStyle} />
+            {/* <img src="/logo.png" className={classes.imageStyle} /> */}
             <span className={classes.haedingText}>City List</span>
+            
+          </div>
+          <IconButton  
+          
+           onClick={() => {
+          // Logic to open a modal or add a row
+            navigate('/dashboard/city')
+        }}
+          >
+             <Tooltip title="Add New City">
+                    <AddIcon />
+                    </Tooltip>
 
+          </IconButton>
+         
           </div>
         )
+        
       }}
+      
       enableRowActions
+
       positionActionsColumn="last"
+      
 
       renderRowActions={({ row, table }) => {
         return (

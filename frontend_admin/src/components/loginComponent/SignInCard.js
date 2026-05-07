@@ -69,10 +69,10 @@ export default function SignInCard() {
                     </Grid>
 
                     <Grid size={12}>
-                        <Button className={classes.btns} variant="outlined" fullWidth><img className={classes.icons} src="google.png" alt="google" />Sign in with Google</Button>
+                        <Button className={classes.btns} variant="outlined" fullWidth><img className={classes.icons} src="/google.png" alt="google" />Sign in with Google</Button>
                     </Grid>
                     <Grid size={12}>
-                        <Button className={classes.btns} variant="outlined" fullWidth><img className={classes.icons} src="fb.png" alt="facebook" />Sign in with Facebook</Button>
+                        <Button className={classes.btns} variant="outlined" fullWidth><img className={classes.icons} src="/facebook.png" alt="facebook" />Sign in with Facebook</Button>
                     </Grid>
                 </Grid>
             </div>

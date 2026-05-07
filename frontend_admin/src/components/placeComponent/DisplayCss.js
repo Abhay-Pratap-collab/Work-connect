@@ -2,16 +2,16 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles({
    placeRoot:{
     display:'flex',
-          width:'100vw',
+          width:'80vw',
           height:'100vh',
           justifyContent:'center',
    }
    , box:{display:'flex',
        
-         width:'60%',
+         width:'80%',
          height:300,
          borderRadius:10,
-         margin:10,
+         margin:40,
           flexDirection: "column",
          
 

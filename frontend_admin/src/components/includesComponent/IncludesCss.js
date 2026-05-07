@@ -4,7 +4,7 @@ export const useStyle = makeStyles({
     root: {
         display: "flex",
         justifyContent: "center",
-        width: '100vw',
+        width: '80vw',
         // height: '100vh',
     },
       Editroot: {
@@ -48,6 +48,7 @@ export const useStyle = makeStyles({
     imageStyle:{
         width:60,
         paddingTop: 6,
+        cursor:'pointer'
     },
     headingGroupStyle: {
         marginLeft: "10px",

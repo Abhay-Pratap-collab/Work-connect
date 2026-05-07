@@ -19,7 +19,7 @@ import {
 } from "react-icons/md";
 
 import { serverURL } from "../../services/FetchNodeServices";
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import AppDashboard from "./AppDashBoard";
 import DisplayAll from "../cityComponent/DisplayAll";
 import DisplayAllCity from "../cityComponent/DisplayAllCity";
@@ -35,12 +35,18 @@ import DisplayAllSubcategory from "../SubCategoryComponent/DisplayAllSubcategory
 import DisplayExperts from "../Experts/DisplayExperts";
 import Includes from "../includesComponent/Includes"
 import DisplayAllIncludes from "../includesComponent/DisplayAllIncludes";
+import Login from "../LoginComponent/Login"
 
 import { useNavigate } from "react-router";
+
 export default function Dashboard() {
   const [collapsed, setCollapsed] = useState(false);
   const [active, setActive] = useState("App");
-  const navigate=useNavigate()
+    const navigate=useNavigate()
+      useEffect(()=>{
+        navigate('/dashboard/appdashboard')
+      },[])
+  
   const menuItems = [
     { name: "App", icon: <MdApps size={25}/>,link:'/dashboard/AppDashboard' },
     { name: "Cities", icon: <MdShoppingBag size={25} />,link:'/dashboard/displayallcity' },
@@ -49,7 +55,7 @@ export default function Dashboard() {
     { name: "Sub Category", icon: <MdBookOnline size={25} />,link:'/dashboard/displayallsubcategory' },
     { name: "Expert", icon: <MdInsertDriveFile size={25} />,link:'/dashboard/displayallexpert' },
     { name: "Includes", icon: <MdSchool size={25} />,link:'/dashboard/displayallincludes' },
-    { name: "Logout", icon: <MdSchool size={25} />,link:'/dashboard/displayallcity' },
+    { name: "Logout", icon: <MdSchool size={25} />,link:'/dashboard/adminlogin' },
   ];
 
   const expandedMenu=()=>{
@@ -259,6 +265,8 @@ const collapsedMenu=()=>{
         {/* <Route element={<DisplayAllIncludes/>} path="displayallinludes"/> */}
               <Route element={<DisplayAllIncludes/>} path="/displayallincludes"/>
               <Route element={<AppDashboard/>} path="/AppDashboard"/>
+                    <Route element={<Login/>} path="/adminlogin"/>
+              
 
         
 

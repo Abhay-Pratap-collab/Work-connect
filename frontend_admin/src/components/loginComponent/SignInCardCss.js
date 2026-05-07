@@ -14,6 +14,7 @@ export const useStyles = makeStyles({
         width: '28%',
         padding: "2rem",
         background: "hsla(220, 30%, 5%, 0.5)",
+        // background:'white',
         boxShadow: 'hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px'
     },
     headingText: {
@@ -34,6 +35,7 @@ export const useStyles = makeStyles({
     input: {
         "& .MuiOutlinedInput-root": {
             backgroundColor: "#05070a",
+            // background:'white',
             borderRadius: 10,
             height: "2.5rem",
             margin: 0,

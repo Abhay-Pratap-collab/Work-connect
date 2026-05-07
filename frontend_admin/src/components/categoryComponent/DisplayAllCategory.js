@@ -11,6 +11,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CategoryEdit from "./CategoryEdit";
 import CategoryIconEdit from "./CategoryIconEdit";
+import { useNavigate } from "react-router";
+import AddIcon from '@mui/icons-material/Add';
 
 
 import Swal from "sweetalert2";
@@ -24,6 +26,7 @@ export default function DisplayAllCategory() {
   const [rowData, setRowData] = useState([])
   const [refresh, setRefresh] = useState(false)
   const [iconOpenStatus, setIconOpenStatus] = useState(false);
+    const navigate = useNavigate();
 
   useEffect(() => {
     fetchCategoryData();
@@ -98,15 +101,30 @@ export default function DisplayAllCategory() {
       data={categoryList}
       renderTopToolbarCustomActions={() => {
         return (
+                                <div style={{display:"flex",justifyContent:'space-between',width:'100%',alignItems:'center',marginTop:'-1px'}}>
+
           <div
             style={{
               display: "flex",
               alignItems: "center",
               flexDirection: "column"
             }}>
-            <img src="/logo.png" className={classes.imageStyle} />
+            {/* <img src="/logo.png" className={classes.imageStyle} /> */}
             <span className={classes.haedingText}>Category List</span>
 
+          </div>
+           <IconButton  
+                    
+                     onClick={() => {
+                    // Logic to open a modal or add a row
+                      navigate('/dashboard/category')
+                  }}
+                    >
+                       <Tooltip title="Add New category">
+                              <AddIcon />
+                              </Tooltip>
+          
+                    </IconButton>
           </div>
         )
       }}
@@ -118,7 +136,7 @@ export default function DisplayAllCategory() {
           <div style={{ display: "flex", gap: "5px" }}>
             <Tooltip title="Edit Icon">
               <IconButton onClick={() => handleEditIcon(row)}>
-                <img src="image-editing.png" style={{ width: 25 }} />
+                <img src="/image-editing.png" style={{ width: 25 }} />
               </IconButton>
             </Tooltip>
 

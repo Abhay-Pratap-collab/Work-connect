@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
   root: {
     display: "flex",
-    width: "100vw",
+    width: "80vw",
     height: "100vh",
     justifyContent: "center",
   },

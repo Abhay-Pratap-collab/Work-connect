@@ -3,7 +3,7 @@ export const useStyle = makeStyles({
     root: {
         display: "flex",
         justifyContent: "center",
-        width: '100vw',
+        width: '80vw',
         // height: '100vh',
     },
     box: {

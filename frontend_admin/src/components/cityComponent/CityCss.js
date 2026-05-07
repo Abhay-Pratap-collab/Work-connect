@@ -3,17 +3,17 @@
 import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles({
     root:{display:'flex',
-          width:'100vw',
+          width:'80vw',
           height:'100vh',
           justifyContent:'center',
           
           },
     box:{display:'flex',
          border:'0.3px solid #bdc3c7',
-         width:'40%',
+         width:'50%',
          height:300,
          borderRadius:10,
-         margin:10,
+         margin:40,
           flexDirection: "column",
 
     },
@@ -45,7 +45,8 @@ export const useStyles = makeStyles({
        paddingTop: 10,
     },   
     imageStyle:{
-        width:60
+        width:60,
+        cursor:'pointer'
     },
     
     haedingText:{

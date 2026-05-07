@@ -12,7 +12,7 @@ export default function About() {
             {/* Head */}
             <div style={{ display: "flex", flexDirection: "column",marginTop:20}}>
                 <div className={classes.heading}>
-                    <img className={classes.imageStyle} src="/wcll.png" alt="logo" />
+                    <img className={classes.imageStyle} src="/logo.png" alt="logo" />
                     <span className={classes.headingText}>Work Connect</span>
                 </div>
 

@@ -9,7 +9,7 @@ export default function Subcategory() {
     const classes = SubcategoryCss()
     const [categoryid, setCategoryId] = useState('')
     const [subcategoryname, setSubcategoryname] = useState('')
-    const [subcategoryIcon, setSubategoryIcon] = useState({ file: 'image-editing.png', bytes: '' })
+    const [subcategoryIcon, setSubategoryIcon] = useState({ file: '/image-editing.png', bytes: '' })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState({ subcategoryIcon: '', subcategoryname: '' })
     var navigate = useNavigate()
@@ -106,7 +106,7 @@ export default function Subcategory() {
                 <div className={classes.headingGroupStyle}>
                     <img src="/logo.png" className={classes.imageStyle} />
                     <span className={classes.haedingText}>SubCategory Interface</span>
-                    <img onClick={() => navigate('/displaysubcategory')} src="/report.png" className={classes.imageStyle} />
+                    <img onClick={() => navigate('/dashboard/displayallsubcategory')} src="/report.png" className={classes.imageStyle} />
                 </div>
             </div>
             <div style={{ margin: 10, width: "96.5%" }}>

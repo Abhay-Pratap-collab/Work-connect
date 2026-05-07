@@ -118,7 +118,7 @@ const fillCity=()=>{
                         {/* Title */}
                         <span className={classes.haedingText}>Place Interface</span>
 
-                        <img onClick={() => navigate('/displayallplace')} src="/report.png" className={classes.imageStyle} />
+                        <img onClick={() => navigate('/dashboard/displayallplace')} src="/report.png" className={classes.imageStyle} />
 
 
                     </div>

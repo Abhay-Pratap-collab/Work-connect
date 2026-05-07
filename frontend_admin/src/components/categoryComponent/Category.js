@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 export default function Category() {
     const classes = CategoryCss();
     const [categoryname, setCategoryname] = useState('')
-    const [categoryIcon, setCategoryIcon] = useState({ file: 'image-editing.png', bytes: '' })
+    const [categoryIcon, setCategoryIcon] = useState({ file: '/image-editing.png', bytes: '' })
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState({ categoryIcon: '', categoryname: '' })
     var navigate = useNavigate()
@@ -86,7 +86,7 @@ export default function Category() {
                 <div className={classes.headingGroupStyle}>
                     <img src="/logo.png" className={classes.imageStyle} />
                     <span className={classes.haedingText}>Category Interface</span>
-                    <img onClick={() => navigate('/displayallcategory')} src="/report.png" className={classes.imageStyle} />
+                    <img onClick={() => navigate('/dashboard/displayallcategory')} src="/report.png" className={classes.imageStyle} />
                 </div>
             </div>
             <div style={{ margin: 10, width: "96.5%" }}>

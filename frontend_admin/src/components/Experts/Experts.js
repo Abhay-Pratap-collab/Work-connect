@@ -418,7 +418,7 @@ export default function Experts() {
                     <div className={classes.headingGroupStyle}>
                         <img src="/logo.png" className={classes.imageStyle} />
                         <span className={classes.haedingText}>Experts</span>
-                        <img onClick={() => navigate('/displayexperts')} src="/report.png" className={classes.imageStyle} />
+                        <img onClick={() => navigate('/dashboard//displayallexpert')} src="/report.png" className={classes.imageStyle} />
 
                     </div>
 

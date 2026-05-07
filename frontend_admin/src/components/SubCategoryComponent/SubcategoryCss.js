@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 export const SubcategoryCss = makeStyles({
   root: {
     display: 'flex',
-    width: '100vw',
+    width: '80vw',
     height: '100vh',
     justifyContent: 'center',
 
@@ -10,7 +10,7 @@ export const SubcategoryCss = makeStyles({
   box: {
     display: 'flex',
     border: '0.3px solid #bdc3c7',
-    width: '40%',
+    width: '50%',
     height: 400,
     borderRadius: 10,
     margin: 10,
@@ -36,7 +36,8 @@ export const SubcategoryCss = makeStyles({
   },
 
   imageStyle: {
-    width: 60
+    width: 60,
+    cursor:'pointer'
   },
   haedingText: {
     fontFamily: 'Raleway',

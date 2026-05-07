@@ -2,18 +2,22 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
   root: {
     display: "flex",
-    width: "100vw",
+    width: "80vw",
     height: "100vh",
     justifyContent: "center",
+    // background:'red'
+
   },
   box: {
     display: "flex",
    
-    width: "60%",
+    width: "80%",
     height: 300,
     borderRadius: 10,
-    margin: 10,
+    marginTop: 10,
     flexDirection: "column",
+   
+    // background:'red'
   },
   heading: {
     width: "100%",
@@ -28,9 +32,10 @@ export const useStyles = makeStyles({
   },
   haedingText: {
     fontFamily: "Raleway",
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: "bold",
     color: "black",
+    padding:10
   },
   headingGroupStyle: {
     marginLeft: "10px",

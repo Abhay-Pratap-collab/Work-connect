@@ -3,11 +3,11 @@ import WelcomeCard from "../WelcomeCard/WelcomeCard";
 import CardSlider from "../WelcomeCard/CardSlider";
 export default function AppDashboard()
 {   var data=[{
-  heading:"Total active users",number:18765,graph:'/upgraph.png',updown:'increase.png',percent:'+2.6% last 7 days'},
+  heading:"Total active users",number:18765,graph:'/upgraph.png',updown:'/increase.png',percent:'+2.6% last 7 days'},
 {
-  heading:"Total installed",number:4876,graph:'/midgraph.png',updown:'increase.png',percent:'+2.6% last 7 days'},
+  heading:"Total installed",number:4876,graph:'/midgraph.png',updown:'/increase.png',percent:'+2.6% last 7 days'},
 {
-  heading:"Total downloads",number:678,graph:'/downgraph.png',updown:'decrease.png',percent:'+2.6% last 7 days'}]
+  heading:"Total downloads",number:678,graph:'/downgraph.png',updown:'/decrease.png',percent:'+2.6% last 7 days'}]
 
 const sliderData = [
     {

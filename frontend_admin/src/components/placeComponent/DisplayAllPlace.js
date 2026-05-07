@@ -10,6 +10,8 @@ import { IconButton, Tooltip } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import PlaceEdit from "./PlaceEdit";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
+import AddIcon from '@mui/icons-material/Add';
 
 
 
@@ -24,6 +26,7 @@ export default function DisplayAllCity() {
   const [rowData, setRowData] = useState([])
   const [refresh, setRefresh] = useState(false)
     const [cityList,setCityList]= useState([])
+    const navigate = useNavigate();
   
       const fetchAllCity = async () => {
           var res = await getData("cities/fetch_all_city")
@@ -108,15 +111,30 @@ icon: 'warning',
       data={placeList}
       renderTopToolbarCustomActions={() => {
         return (
+                      <div style={{display:"flex",justifyContent:'space-between',width:'100%',alignItems:'center',marginTop:'-1px'}}>
+
           <div
             style={{
               display: "flex",
               alignItems: "center",
               flexDirection: "column"
             }}>
-            <img src="/logo.png" className={classes.imageStyle} />
+            {/* <img src="/logo.png" className={classes.imageStyle} /> */}
             <span className={classes.haedingText}>Place List</span>
 
+          </div>
+             <IconButton  
+                    
+                     onClick={() => {
+                    // Logic to open a modal or add a row
+                      navigate('/dashboard/place')
+                  }}
+                    >
+                       <Tooltip title="Add New Place">
+                              <AddIcon />
+                              </Tooltip>
+          
+                    </IconButton>
           </div>
         )
       }}

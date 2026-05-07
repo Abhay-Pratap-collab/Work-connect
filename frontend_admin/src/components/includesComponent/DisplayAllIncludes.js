@@ -7,6 +7,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIncludes from './EditInclude';
 import Swal from 'sweetalert2';
+import AddIcon from '@mui/icons-material/Add';
+
+import { useNavigate } from "react-router";
 
 
 export default function DisplayAllIncludes(){
@@ -16,6 +19,8 @@ export default function DisplayAllIncludes(){
     const [rowData,setRowData] = useState({})
     const [refresh,setRefresh] = useState(false)
     const classes =useStyle(); 
+       const navigate=useNavigate();
+    
 
     useEffect(()=>{
         fetchIncludeData()
@@ -72,10 +77,28 @@ const columns=[
 
 const tabel = useMaterialReactTable({
     renderTopToolbarCustomActions:()=>{
-        return(<Typography variant='h6' >
-            <img className={classes.imageStyle} src="/logo.png" alt="logo" />
+        return(
+                        <div style={{display:"flex",justifyContent:'space-between',width:'100%',alignItems:'center',marginTop:'-1px'}}>
+
+        <Typography variant='h6' >
+
+            {/* <img className={classes.imageStyle} src="/logo.png" alt="logo" /> */}
             <span className={classes.headingText}>Include List</span>
-        </Typography>)
+        </Typography>
+        <IconButton  
+                  
+                   onClick={() => {
+                  // Logic to open a modal or add a row
+                    navigate('/dashboard/includes')
+                }}
+                  >
+                     <Tooltip title="Add New Include">
+                            <AddIcon />
+                            </Tooltip>
+        
+                  </IconButton>
+        </div>
+        )
     },
     columns,
     data:includeList,

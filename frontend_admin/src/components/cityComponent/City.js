@@ -34,7 +34,7 @@ export default function City() {
   const [cityName, setCityName] = useState('')
 
   // State for city image (file preview + actual file)
-  const [cityIcon, setCityIcon] = useState({ file: 'india-gate.png', bytes: '' })
+  const [cityIcon, setCityIcon] = useState({ file: '/image-editing.png', bytes: '' })
 
   // State for error messages
   const [error, setError] = useState({ cityIcon: '',cityName:'' })
@@ -146,7 +146,7 @@ export default function City() {
             <span className={classes.haedingText}>City Interface</span>
 
             {/* Navigate to display page */}
-            <img onClick={() => navigate('/displayallcity')} src="/report.png" className={classes.imageStyle} />
+            <img onClick={()=>navigate('/dashboard/displayallcity')} src="/report.png" className={classes.imageStyle} />
 
           </div>
          

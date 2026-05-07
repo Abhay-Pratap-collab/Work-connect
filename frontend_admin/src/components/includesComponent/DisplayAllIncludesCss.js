@@ -4,13 +4,13 @@ export const useStyle = makeStyles({
     rootedit: {
         display: "flex",
         justifyContent: 'center',
-        width:'100vw',
+        width:'80vw',
         height:'100vh',
         margin:0,
         padding:0
     },
     boxedit: {
-        width: '80%',
+        width: '90%',
         height:'auto',
         padding:'0px',
         marginTop:15
@@ -27,8 +27,8 @@ export const useStyle = makeStyles({
         justifyContent: "center",
         alignItems: "center",
         fontFamily:'Raleway',
-        fontSize: 16,
-        color: 'gray',
+        fontSize: 26,
+        color: 'black',
         fontWeight: 'bold',
         letterSpacing:1,
         wordSpacing:1.5,

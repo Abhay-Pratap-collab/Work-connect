@@ -47,6 +47,7 @@ export const useStyle = makeStyles({
      imageStyle:{
         width:60,
         paddingTop: 6,
+        cursor:'pointer'
     },
      headingGroupStyle: {
     marginLeft: "10px",

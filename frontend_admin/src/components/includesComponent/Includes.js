@@ -147,7 +147,7 @@ export default function Includes() {
 
                         {/* Title */}
                         <span className={classes.haedingText}>Includes</span>
-                                   <img onClick={() => navigate('/displayallincludes')} src="/report.png" className={classes.imageStyle} />
+                                   <img onClick={() => navigate('/dashboard/displayallincludes')} src="/report.png" className={classes.imageStyle} />
 
 
                         {/* Navigate to display page */}
