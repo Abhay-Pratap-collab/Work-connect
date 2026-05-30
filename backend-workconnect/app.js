@@ -13,6 +13,7 @@ var subcategoryRouter = require("./routes/subcategory")
 var expertsRouter = require("./routes/experts")
 var includesRouter = require("./routes/includes")
 var adminRouter = require('./routes/admins')
+var userinterfaceRouter = require('./routes/userinterface')
 var cors=require("cors")
 
 var app = express();
@@ -36,6 +37,8 @@ app.use('/subcategory',subcategoryRouter)
 app.use('/experts',expertsRouter     )
 app.use('/includes',includesRouter)
 app.use('/admins',adminRouter)
+app.use('/userinterface',userinterfaceRouter)
+
 
 
 // catch 404 and forward to error handler

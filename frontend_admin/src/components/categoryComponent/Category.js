@@ -155,6 +155,7 @@ export default function Category() {
                     </Grid>
                 </Grid>
             </div>
+            
         </div>
     </div>
     )

@@ -1,0 +1,28 @@
+/* promise.module.css*/
+.maindiv
+{
+    width: 100%;
+  height: 170px;
+  border: 1px solid #c4c3c3;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 20px;
+  margin-top: 25px;
+}
+.cont
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.promise{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+.image
+{
+    width: 60px;
+    height: 60px;
+}

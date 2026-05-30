@@ -109,7 +109,7 @@ export default function DisplayAllCategory() {
               alignItems: "center",
               flexDirection: "column"
             }}>
-            {/* <img src="/logo.png" className={classes.imageStyle} /> */}
+            {/* <img src="/W.png" className={classes.imageStyle} /> */}
             <span className={classes.haedingText}>Category List</span>
 
           </div>

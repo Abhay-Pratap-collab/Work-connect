@@ -37,7 +37,7 @@ export default function City() {
   const [cityIcon, setCityIcon] = useState({ file: '/image-editing.png', bytes: '' })
 
   // State for error messages
-  const [error, setError] = useState({ cityIcon: '',cityName:'' })
+  const [error, setError] = useState({ cityIcon: '', cityName: '' })
 
   // State for loading button
   const [loading, setLoading] = useState(false)
@@ -61,14 +61,14 @@ export default function City() {
   }
 
   // Validation function
-  
+
   // Reset form data
   const resetData = () => {
     setCityIcon({ file: "india-gate.png", bytes: "" })
     setCityName('')
   }
 
-// Validation function
+  // Validation function
   const validate = () => {
     var error = true; // Start assuming "True" (No errors)
 
@@ -114,7 +114,7 @@ export default function City() {
           toast: true
         });
         setLoading(false);
-        resetData(); 
+        resetData();
       } else {
         Swal.fire({
           icon: "error",
@@ -127,9 +127,9 @@ export default function City() {
     // Note: If status was false, the code does nothing here except show errors.
   };
 
- 
 
-  
+
+
   return (
     <div className={classes.root}> {/* Main container */}
 
@@ -138,18 +138,21 @@ export default function City() {
         <div className={classes.heading}> {/* Heading section */}
 
           <div className={classes.headingGroupStyle}>
+            <div>
 
-            {/* Logo */}
-            <img src="/logo.png" className={classes.imageStyle} />
+
+              {/* Logo */}
+              <img src="/Wt.jpg" className={classes.imageStyle} style={{ width: '90px' }} />
+            </div>
 
             {/* Title */}
             <span className={classes.haedingText}>City Interface</span>
 
             {/* Navigate to display page */}
-            <img onClick={()=>navigate('/dashboard/displayallcity')} src="/report.png" className={classes.imageStyle} />
+            <img onClick={() => navigate('/dashboard/displayallcity')} src="/report.png" className={classes.imageStyle} />
 
           </div>
-         
+
         </div>
 
         {/* Form container */}
@@ -187,7 +190,7 @@ export default function City() {
               <span className={classes.errorTextStyle}>
                 {error.cityIcon}
               </span>
-           </Grid>
+            </Grid>
             {/* Image Preview */}
             <Grid size={6} className={classes.centerStyle}>
               <img src={cityIcon.file} className={classes.imageStyle} />

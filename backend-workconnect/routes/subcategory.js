@@ -22,13 +22,13 @@ router.post('/add_new_subcategory', upload.single('icon'), function (req, res, n
 
 router.get("/fetch_all_subcategory_by_id", function (req, res) {
    console.log(req.query)
-   pool.query("select * from subcategory where categoryid=?",[req.query.categoryid], function (error, result) {
+   pool.query("select * from subcategory where categoryid=?", [req.query.categoryid], function (error, result) {
       if (error) {
          res.status(500).json({ status: false, message: 'Pls Contact to DBA...' })
       }
       else {
          res.status(200).json({ status: true, data: result })
-      }  
+      }
 
    })
 })

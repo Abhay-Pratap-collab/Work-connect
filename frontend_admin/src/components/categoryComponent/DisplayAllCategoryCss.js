@@ -24,7 +24,7 @@ export const useStyles = makeStyles({
     paddingTop: 10,
   },
   imageStyle: {
-    width: 40,
+    width: 50,
   },
   haedingText: {
     fontFamily: "Raleway",
