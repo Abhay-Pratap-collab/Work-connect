@@ -1,4 +1,5 @@
 "use Client"
+import { serverURL } from '@/app/fetchserver/FetchServer';
 import React, { useState } from 'react'
 import { LuMinus } from "react-icons/lu";
 import { LuPlus } from "react-icons/lu";
@@ -61,7 +62,7 @@ export default function Cart({ cartItem, setCartItem }) {
         </div>
       ) : (
         <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '30px' }} >
-          <img src="/shopping-cart.png" style={{ width: '50px' }} />
+          <img src={`${serverURL}/images/shopping-cart.png`} style={{ width: '50px' }} />
           <p>No items in your cart</p>
         </div>
       )}

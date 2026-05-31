@@ -8,8 +8,10 @@ import Footer from "../components/headercomponent/footer/Footer";
 import AddComponent from "../components/addcomponent/AddComponent";
 import { useEffect, useState } from "react";
 import { getData, postData } from "../fetchserver/FetchServer";
+import { useRouter } from 'next/navigation';
 export default function HomePage() {
   const [category, setCategory] = useState([])
+   const router = useRouter()
   const fetchAllCategory = async () => {
     var response = await getData('userinterface/fetch_all_category')
     setCategory(response.data)

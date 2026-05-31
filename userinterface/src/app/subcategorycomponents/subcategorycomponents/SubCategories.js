@@ -1,7 +1,9 @@
+"use client"
 import { Grid } from '@mui/material'
 import React, { useState } from 'react'
 import styles from "./SubCategory.module.css"
 import { IoIosArrowForward } from 'react-icons/io'
+import { serverURL,postData } from '@/app/fetchserver/FetchServer'
 
 
 const subcategory = [
@@ -11,19 +13,19 @@ const subcategory = [
   { image: 'installation.jpg', name: 'Installation/uninstallation' },
 ]
 
-export default function SubCategories() {
+export default function SubCategories({data}) {
   const [active, setActive] = useState('')
   const [hover, setHover] = useState("")
 
 
   const fillSubcategory = () => {
-    return subcategory.map((item, i) => {
+    return data.map((item, i) => {
       return (
         <Grid size={4} key={i} >
-          <div onClick={() => setActive(item.name)} onMouseOver={() => setHover(item.name)} onMouseLeave={() => setHover("")} style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', overflowWrap: 'anywhere', gap: '6px', cursor: 'pointer' }} >
-            <img src={item.image} style={{ width: '70px', height: '70px', border: active === item.name ? "2px solid black" : "none", borderRadius: '10px', padding: '2px' }} />
-            <p style={{ fontSize: '12px', color: '#4d4c4c' }} >{item.name}</p>
-            <div style={{ width: hover === item.name ? "90%" : "0%", transition: "width 0.2s linear", color: 'green', background: 'black', height: '1px' }} ></div>
+          <div onClick={() => setActive(item.subcategoryid)} onMouseOver={() => setHover(item.subcategoryid)} onMouseLeave={() => setHover("")} style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', overflowWrap: 'anywhere', gap: '6px', cursor: 'pointer' }} >
+            <img src={`${serverURL}/images/${item.icon}`} style={{ width: '70px', height: '70px', border: active === item.subcategoryid ? "2px solid black" : "none", borderRadius: '10px', padding: '2px' }} />
+            <p style={{ fontSize: '12px', color: '#4d4c4c' }} >{item.subcategoryname}</p>
+            <div style={{ width: hover === item.subcategoryid ? "90%" : "0%", transition: "width 0.2s linear", color: 'green', background: 'black', height: '1px' }} ></div>
           </div>
 
         </Grid>

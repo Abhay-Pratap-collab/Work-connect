@@ -8,6 +8,7 @@ import { Box, Typography, Button, Paper, Divider } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { LuMinus, LuPlus } from 'react-icons/lu';
 import styles from "./price.module.css"
+import { serverURL } from '@/app/fetchserver/FetchServer';
 
 // Keep your existing static arrays here
 const packages = [
@@ -242,7 +243,7 @@ export default function PriceComponent({ cartItem, setCartItem }) {
                                         {item.badge}
                                     </Box>
                                 )}
-                                <img src={item.image} alt={item.title} className={styles.itemImage} />
+                                <img src={`${serverURL}/images/${item.image}`} alt={item.title} className={styles.itemImage} />
                             </Paper>
                         )}
 
@@ -296,14 +297,14 @@ export default function PriceComponent({ cartItem, setCartItem }) {
                 {/* Section 1 */}
                 <Box className={`${styles.sectionContainer} ${styles.sectionContainerFirst}`}>
                     <h1 className={styles.sectionHeading}>Super saver packages</h1>
-                    <Box><img src="ac service.png" className={styles.coverImage} alt="cover" /></Box>
+                    <Box><img src={`${serverURL}/images/ac service.png`} className={styles.coverImage} alt="cover" /></Box>
                     {packages.map((item, index) => <ItemRow key={item.id} item={item} index={index} />)}
                 </Box>
 
                 {/* Section 2 */}
                 <Box className={styles.sectionContainer}>
                     <h1 className={styles.sectionHeading}>Service</h1>
-                    <Box><img src="ac service.png" className={styles.coverImage} alt="cover" /></Box>
+                    <Box><img src={`${serverURL}/images/ac service.png`} className={styles.coverImage} alt="cover" /></Box>
                     {services.map((item, index) => <ItemRow key={item.id} item={item} index={index} />)}
                 </Box>
 

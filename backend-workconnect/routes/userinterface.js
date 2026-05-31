@@ -16,6 +16,19 @@ router.get("/fetch_all_category", function (req, res) {
 
    })
 })
+router.post("/fetch_all_subcategory_by_categoryid",function(req,res)
+{
+   pool.query("select * from subcategory where categoryid=?",[req.body.categoryid],function(error,result)
+{
+   if(error)
+   {
+      res.status(500).json({status:false,mesage:'error'})
+   }
+   else{
+         res.status(200).json({status:true,data:result})
+   }
+})
+})
 
 
 

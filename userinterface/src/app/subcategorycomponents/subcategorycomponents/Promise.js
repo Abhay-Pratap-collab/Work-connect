@@ -1,6 +1,7 @@
 import React from 'react'
 import { MdCheck } from "react-icons/md";
 import styles from "./promise.module.css"
+import { serverURL } from '@/app/fetchserver/FetchServer';
 
 export default function Promise() {
   return (
@@ -11,7 +12,7 @@ export default function Promise() {
         <p  className={styles.promise}  ><MdCheck size="20" />Hassle Free Booking</p>
         <p  className={styles.promise} ><MdCheck size="20" />Transparent Pricing</p>
       </div>
-      <img src="stamp.png" className={styles.image} />
+      <img  src={`${serverURL}/images/stamp.png`} className={styles.image} />
     </div>
   )
 }
