@@ -104,7 +104,7 @@ export default function Subcategory() {
         <div className={classes.box}>
             <div className={classes.heading}>
                 <div className={classes.headingGroupStyle}>
-                    <img src="/logo.png" className={classes.imageStyle} />
+                    <img src="/wt.jpg" className={classes.imageStyle} />
                     <span className={classes.haedingText}>SubCategory Interface</span>
                     <img onClick={() => navigate('/dashboard/displayallsubcategory')} src="/report.png" className={classes.imageStyle} />
                 </div>

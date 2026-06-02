@@ -105,7 +105,7 @@ export default function SubcategoryEdit({ refresh, setRefresh, rowData, openStat
         <div className={classes.boxEdit}>
           <div className={classes.heading}>
             <div className={classes.headingGroupStyle}>
-              <img src="/logo.png" className={classes.imageStyle} />
+              <img src="/wt.jpg" className={classes.imageStyle} />
               <span className={classes.haedingText}>Edit SubCategory</span>
             </div>
           </div>

@@ -12,14 +12,22 @@ export default function Pricing() {
     const [categoryid, setCategoryId] = useState('')
     const [subCategoryid, setSubCategoryid] = useState('')
     const [subcategoryList, setSubCategoryList] = useState([])
-    const [typeofservuce, setTypeOfService] = useState('')
+    const [typeofservice, setTypeOfService] = useState('')
     const [timeservice, setTimeService] = useState('')
     const [picture, setPicture] = useState({ file: '/image-editing.png', bytes: '' })
     const [amount, setAmount] = useState('')
     const [offer, setOffer] = useState('')
     const [categoryList, setCategoryList] = useState([])
-    const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState({
+        categoryid: '',
+        subcategoryid: '',
+        typeofservice: '',
+        amount: '',
+        offer: '',
+        timeservice: '',
+        picture: ''
+    })
     const fetchAllCategory = async () => {
         var res = await getData("category/fetch_all_category")
         setCategoryList(res.data)
@@ -51,6 +59,7 @@ export default function Pricing() {
     }
     const handleCategoryChange = (e) => {
         setCategoryId(e.target.value)
+        handleError('categoryid', '')
         fetchAllSubCategory(e.target.value)
     }
 
@@ -78,24 +87,36 @@ export default function Pricing() {
         handleError('picture', '')
     }
 
-
     const validate = () => {
         var error = true
-        if (categoryid == 0) {
-            handleError('categoryid', "Category nmae should not blank...")
+
+        if (!categoryid) {
+            handleError('categoryid', "Category name should not be blank...")
             error = false
         }
-        else if (subCategoryid == 0) {
-            handleError('subcategoryid', "Oops! We need a city name to move forward.")
+        if (!subCategoryid) {
+            handleError('subcategoryid', "Oops! We need a subcategory name to move forward.")
             error = false
         }
-        else if (!picture.bytes) {
-            handleError("picture", "Choose subCategory image...")
+        if (!typeofservice.trim()) {
+            handleError('typeofservice', "Type of service is required.")
             error = false
         }
+        if (!amount.trim()) {
+            handleError('amount', "Amount field cannot be blank.")
+            error = false
+        }
+        if (!timeservice.trim()) {
+            handleError('timeservice', "Service time frame is required.")
+            error = false
+        }
+        if (!picture.bytes) {
+            handleError("picture", "Please choose a pricing interface image...")
+            error = false
+        }
+
         return error
     }
-
     const submitData = async () => {
         var status = validate()
         if (status == true) {
@@ -103,7 +124,7 @@ export default function Pricing() {
             var body = new FormData()
             body.append("categoryid", categoryid)
             body.append("subcategoryid", subCategoryid)
-            body.append("typeofservice", typeofservuce)
+            body.append("typeofservice", typeofservice)
             body.append("amount", amount)
             body.append("offer", offer)
             body.append("picture", picture.bytes)
@@ -140,7 +161,7 @@ export default function Pricing() {
             <div className={classes.box}>
                 <div className={classes.heading}>
                     <div className={classes.headingGroupStyle} >
-                        <img src="/logo.png" className={classes.imageStyle} />
+                        <img src="/wt.jpg" className={classes.imageStyle} />
                         <span className={classes.haedingText}>Price Interface</span>
                         <img onClick={() => navigate('/dashboard/displayprice')} src="/report.png" className={classes.imageStyle} />
                     </div>
@@ -148,9 +169,9 @@ export default function Pricing() {
                 <div style={{ margin: 10, width: "96.5%" }}>
                     <Grid spacing={2} container>
                         <Grid size={12} >
-                            <FormControl fullWidth >
+                            <FormControl fullWidth error={!!error.categoryid}>
                                 <InputLabel>Category Code</InputLabel>
-                                <Select label="City Code" value={categoryid} onChange={handleCategoryChange}>
+                                <Select label="City Code" value={categoryid} onChange={handleCategoryChange} >
                                     <MenuItem>--Select Category--</MenuItem>
                                     {fillCategory()}
                                 </Select>
@@ -159,7 +180,7 @@ export default function Pricing() {
 
                         </Grid>
                         <Grid size={12} >
-                            <FormControl fullWidth>
+                            <FormControl fullWidth error={!!error.subcategoryid}>
                                 <InputLabel>SubCategory Code</InputLabel>
                                 <Select label="subcategory Code" value={subCategoryid} onChange={(e) => { setSubCategoryid(e.target.value); }}>
                                     <MenuItem>--Select SubCategory--</MenuItem>
@@ -173,8 +194,12 @@ export default function Pricing() {
                         <Grid size={12} >
                             <TextField variant="outlined"
                                 fullWidth
+                                helperText={error.typeofservice} // show error text
+                                error={error.typeofservice} // highlight error
+                                value={typeofservice}
                                 label="typeofservice"
-                                value={typeofservuce}
+                                value={typeofservice}
+                                onFocus={() => handleError('typeofservice', '')}
                                 onChange={(e) => setTypeOfService(e.target.value)}
                             >
                             </TextField>
@@ -184,6 +209,9 @@ export default function Pricing() {
                                 fullWidth
                                 label="Amount"
                                 value={amount}
+                                error={!!error.amount}
+                                helperText={error.amount}
+                                onFocus={() => handleError('amount', '')}
                                 onChange={(e) => setAmount(e.target.value)}
 
                             >
@@ -208,7 +236,10 @@ export default function Pricing() {
                                 variant="outlined"
                                 fullWidth
                                 label="time"
+                                error={!!error.timeservice}
+                                helperText={error.timeservice}
                                 value={timeservice}
+                                onFocus={() => handleError('timeservice', '')}
                                 onChange={(e) => setTimeService(e.target.value)}
 
                             >
@@ -227,7 +258,7 @@ export default function Pricing() {
                                 </input>
                             </Button>
                             <span className={classes.errorTextStyle}>
-                                {error.subcategoryIcon}
+                                {error.picture}
                             </span>
 
                         </Grid>

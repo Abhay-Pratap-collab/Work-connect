@@ -120,8 +120,8 @@ const fillCity=()=>{
                 <div className={classes.boxEdit}>
                     <div className={classes.heading}>
                         <div className={classes.headingGroupStyle}>
-                            <img src="/logo.png" className={classes.imageStyle} />
-                            <span className={classes.haedingText}>Edit City</span>
+                            <img src="/wt.jpg" className={classes.imageStyle} />
+                            <span className={classes.haedingText}>Edit Place</span>
                         </div>
                     </div>
                     <div style={{ margin: 10, width: "96.5%" }}>

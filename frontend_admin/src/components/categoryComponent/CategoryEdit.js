@@ -84,7 +84,7 @@ export default function CategoryEdit({ refresh, setRefresh, rowData, openStatus,
         <div className={classes.boxEdit}>
           <div className={classes.heading}>
             <div className={classes.headingGroupStyle}>
-              <img src="/logo.png" className={classes.imageStyle} />
+              <img src="/wt.jpg" className={classes.imageStyle} />
               <span className={classes.haedingText}>Edit Category</span>
             </div>
           </div>

@@ -10,10 +10,11 @@ export const PriceCss = makeStyles({
     display: "flex",
 
     width: "80%",
-    height: 500,
+    height: 600,
     borderRadius: 10,
     margin: 10,
     flexDirection: "column",
+    border: '0.3px solid #bdc3c7',
   },
   heading: {
     width: "98%",

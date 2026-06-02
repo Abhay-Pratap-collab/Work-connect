@@ -113,7 +113,7 @@ const fillCity=()=>{
                     <div className={classes.headingGroupStyle}>
 
                         {/* Logo */}
-                        <img src="/logo.png" className={classes.imageStyle} />
+                        <img src="/wt.jpg" className={classes.imageStyle} />
 
                         {/* Title */}
                         <span className={classes.haedingText}>Place Interface</span>

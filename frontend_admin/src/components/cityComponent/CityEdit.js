@@ -28,50 +28,46 @@ export default function CityEdit({ refresh, setRefresh, rowData, openStatus, set
     setError((prev) => ({ ...prev, [label]: message }))
     console.log('Error', error)
   }
-
   const validate = () => {
-    var error = false
-    if (cityName.length == 0) {
-      handleError("cityName", "City name should not blank...")
-      error = true
+    var isValid = true
+
+    if (!cityName || cityName.trim().length === 0) {
+      handleError("cityName", "City name should not be blank...")
+      isValid = false
     }
-    return error
+
+    return isValid
   }
-
-
 
   const handleSubmit = async () => {
     var status = validate()
 
-    if (status == false)
+    // Bug Fix: Enclosed the API request properly inside the validation block
+    if (status === true) {
       setLoading(true)
-    {
       var body = { cityname: cityName, cityid: cityId }
 
       var res = await postData('cities/edit_city', body)
       setLoading(false);
-      if (res.status) {
+
+      if (res && res.status) {
         Swal.fire({
-          // position: "top-end",
           icon: "success",
-          title: res.message,
+          title: res.message || "City updated successfully",
           showConfirmButton: false,
-          timer: 1500
-          , toast: true
+          timer: 1500,
+          toast: true
         });
-        setLoading(false)
         setOpenStatus(false)
         setRefresh(!refresh)
-      }
-      else {
+      } else {
         Swal.fire({
           position: "top-end",
           icon: "error",
-          title: res.message,
+          title: res?.message || "Server error occurred",
           showConfirmButton: false,
           timer: 1500
         });
-
       }
     }
   }
@@ -83,7 +79,7 @@ export default function CityEdit({ refresh, setRefresh, rowData, openStatus, set
         <div className={classes.boxEdit}>
           <div className={classes.heading}>
             <div className={classes.headingGroupStyle}>
-              <img src="/logo.png" className={classes.imageStyle} />
+              <img src="/wt.jpg" className={classes.imageStyle} />
               <span className={classes.haedingText}>Edit City</span>
             </div>
           </div>

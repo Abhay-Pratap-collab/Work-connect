@@ -84,7 +84,7 @@ export default function Category() {
         <div className={classes.box}>
             <div className={classes.heading}>
                 <div className={classes.headingGroupStyle}>
-                    <img src="/logo.png" className={classes.imageStyle} />
+                    <img src="/wt.jpg" className={classes.imageStyle} />
                     <span className={classes.haedingText}>Category Interface</span>
                     <img onClick={() => navigate('/dashboard/displayallcategory')} src="/report.png" className={classes.imageStyle} />
                 </div>
