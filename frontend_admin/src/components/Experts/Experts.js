@@ -5,7 +5,7 @@ import { postData, getData } from "../../services/FetchNodeServices";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
-import { Grid, FormControl, InputLabel, Select, MenuItem, TextField, Radio, RadioGroup, FormControlLabel, FormLabel, Button, backdropClasses, boxClasses , Paper,Typography} from "@mui/material"
+import { Grid, FormControl, InputLabel, Select, MenuItem, TextField, Radio, RadioGroup, FormControlLabel, FormLabel, Button, backdropClasses, boxClasses, Paper, Typography } from "@mui/material"
 
 export default function Experts() {
     const classes = useStyle()
@@ -28,14 +28,14 @@ export default function Experts() {
     const [currentcityid, setCurrentCityId] = useState('')
     const [currentCityList, setCurrentCityList] = useState([]);
     const [currentpincode, setCurrentPincode] = useState('')
-    const[currentaddress,setCurrentAddress]=useState('')
-// permanent address
+    const [currentaddress, setCurrentAddress] = useState('')
+    // permanent address
 
     const [permanetstateid, setPermanentStateId] = useState('')
     const [permanentcityid, setPermanentCityId] = useState('')
     const [permanentCityList, setPermanentCityList] = useState([]);
     const [permanentpincode, setPermanentPincode] = useState('')
-        const[permanentaddress,setPermanentAddress]=useState('')
+    const [permanentaddress, setPermanentAddress] = useState('')
 
     // fetch 
     // const [currentstateList, setCurrentStateList] = useState([])
@@ -319,13 +319,13 @@ export default function Experts() {
         setFatherName('');
         setDob('');
         setGender('');
-       setEmailId('')
+        setEmailId('')
         setMobileNo('')
         setAadharId('')
         setPanId('');
-      setVehicleNo('')
+        setVehicleNo('')
         setVehicleType('');
-       setLicense('')
+        setLicense('')
         setCurrentStateId('');
         setCurrentCityId('')
         setPermanentStateId('')
@@ -370,14 +370,14 @@ export default function Experts() {
             // body.append("currentcity", cityid);
             body.append("currentcity", currentcityid)
             body.append("currentpincode", currentpincode);
-            body.append('currentaddress',currentaddress)
+            body.append('currentaddress', currentaddress)
             body.append("permanentstate", permanetstateid)
             body.append("permanentcity", permanentcityid);
             body.append("permanentpincode", permanentpincode);
-            body.append('permanentaddress',permanentaddress)
+            body.append('permanentaddress', permanentaddress)
 
             // 2. Append the actual file 'bytes'
-           body.append("aadharfile",aadharfile.bytes)
+            body.append("aadharfile", aadharfile.bytes)
             body.append("panfile", panfile.bytes);
             body.append("photograph", photograph.bytes);
             body.append("licensefile", licensefile.bytes);
@@ -424,8 +424,8 @@ export default function Experts() {
 
                 </div>
                 <Typography variant="h5" gutterBottom style={{ fontWeight: 'bold' }}>
-            User Information Form
-        </Typography>
+                    User Information Form
+                </Typography>
                 <div style={{ margin: 10, width: "96.5%" }}>
                     <Grid container spacing={2}>
                         <Grid size={6}>
@@ -449,11 +449,11 @@ export default function Experts() {
                         </Grid>
 
                         <Grid size={12}>
-                            
-                        <Typography variant="subtitle1" style={{ fontWeight: 'bold', marginBottom: '15px' }}>Personal Information</Typography>
+
+                            <Typography variant="subtitle1" style={{ fontWeight: 'bold', marginBottom: '15px' }}>Personal Information</Typography>
                         </Grid>
 
-                       
+
                         <Grid size={4}>
                             <TextField
                                 onFocus={() => handleError('firstname', '')}
@@ -509,7 +509,7 @@ export default function Experts() {
 
                         </Grid>
                         <Grid size={6}>
-                            <FormControl component="fieldset" variant="outlined" style={{border: '1px solid #ccc', borderRadius: '4px', padding: '10px', width: '100%'}} >
+                            <FormControl component="fieldset" variant="outlined" style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '10px', width: '100%' }} >
                                 <FormLabel>Gender</FormLabel>
                                 <RadioGroup row value={gender} onChange={(e) => setGender(e.target.value)}
                                     onFocus={() => handleError('gender', '')}
@@ -523,7 +523,7 @@ export default function Experts() {
                                 </RadioGroup>
                             </FormControl>
                         </Grid>
-                      
+
                         <Grid size={6}>
                             <TextField
                                 onFocus={() => handleError('emailid', '')}
@@ -589,14 +589,14 @@ export default function Experts() {
                             />
                         </Grid>
                         <Grid size={12}>
-                                    <TextField
-                                      value={currentaddress}
-                                      onChange={(e) => setCurrentAddress(e.target.value)}
-                                      variant="standard"
-                                      fullWidth
-                                      label="currentaddress"
-                                    />
-                                  </Grid>
+                            <TextField
+                                value={currentaddress}
+                                onChange={(e) => setCurrentAddress(e.target.value)}
+                                variant="standard"
+                                fullWidth
+                                label="currentaddress"
+                            />
+                        </Grid>
                         <Grid size={12} >
                             <span style={{ justifyContent: "center", display: "flex" }}>Permanent Address</span>
                         </Grid>
@@ -637,15 +637,15 @@ export default function Experts() {
                                 onChange={(e) => setPermanentPincode(e.target.value)}
                             />
                         </Grid>
-                          <Grid size={12}>
-                                    <TextField
-                                      value={permanentaddress}
-                                      onChange={(e) => setPermanentAddress(e.target.value)}
-                                      variant="standard"
-                                      fullWidth
-                                      label="permanentaddress"
-                                    />
-                                  </Grid>
+                        <Grid size={12}>
+                            <TextField
+                                value={permanentaddress}
+                                onChange={(e) => setPermanentAddress(e.target.value)}
+                                variant="standard"
+                                fullWidth
+                                label="permanentaddress"
+                            />
+                        </Grid>
 
 
 
@@ -724,7 +724,7 @@ export default function Experts() {
                         </Grid>
                         <Grid size={6} className={classes.centerStyle}>
                             <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
-                              Photograph
+                                Photograph
                                 <input
                                     multiple
                                     type="file"
@@ -756,21 +756,21 @@ export default function Experts() {
 
                             />
                         </Grid>
-                                 <Grid size={6}> {/* Added Grid wrapper */}
-                         <FormControl fullWidth variant="outlined">
-                           <InputLabel>Vehicle Type</InputLabel>
-                           <Select 
-                             label="Vehicle Type" // Added label prop for correct border rendering
-                             value={vehicletype} 
-                             onChange={(e) => setVehicleType(e.target.value)} 
-                           >
-                             <MenuItem value="">--select--</MenuItem>
-                             <MenuItem value="Two Wheeler">Two Wheeler</MenuItem>
-                             {/* Fixed typo: changed "Wheller" to "Wheeler" */}
-                             <MenuItem value="Four Wheeler">Four Wheeler</MenuItem> 
-                           </Select>
-                         </FormControl>
-                       </Grid>
+                        <Grid size={6}> {/* Added Grid wrapper */}
+                            <FormControl fullWidth variant="outlined">
+                                <InputLabel>Vehicle Type</InputLabel>
+                                <Select
+                                    label="Vehicle Type" // Added label prop for correct border rendering
+                                    value={vehicletype}
+                                    onChange={(e) => setVehicleType(e.target.value)}
+                                >
+                                    <MenuItem value="">--select--</MenuItem>
+                                    <MenuItem value="Two Wheeler">Two Wheeler</MenuItem>
+                                    {/* Fixed typo: changed "Wheller" to "Wheeler" */}
+                                    <MenuItem value="Four Wheeler">Four Wheeler</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
                         <Grid size={4}>
                             <TextField label="License Number " variant="outlined"
                                 value={license}
@@ -828,7 +828,7 @@ export default function Experts() {
                     </Grid>
                 </div>
             </div>
-            
+
         </div>
 
     )

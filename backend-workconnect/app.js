@@ -14,6 +14,7 @@ var expertsRouter = require("./routes/experts")
 var includesRouter = require("./routes/includes")
 var adminRouter = require('./routes/admins')
 var userinterfaceRouter = require('./routes/userinterface')
+var priceRouter=require("./routes/price")
 var cors=require("cors")
 
 var app = express();
@@ -38,6 +39,7 @@ app.use('/experts',expertsRouter     )
 app.use('/includes',includesRouter)
 app.use('/admins',adminRouter)
 app.use('/userinterface',userinterfaceRouter)
+app.use('/price',priceRouter)
 
 
 
