@@ -1,11 +1,12 @@
 import { PriceCss } from "./PriceCss"
-import { Grid, TextField, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Grid, TextField, Button, FormControl, InputLabel, Select, MenuItem, FormLabel, FormHelperText } from "@mui/material";
 import Swal from "sweetalert2";
 
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from "react";
 import { getData, postData } from "../../services/FetchNodeServices";
 import { useNavigate } from "react-router";
+import ReactQuill from 'react-quill-new';
 export default function Pricing() {
     const classes = PriceCss()
     var navigate = useNavigate()
@@ -110,6 +111,7 @@ export default function Pricing() {
             handleError('timeservice', "Service time frame is required.")
             error = false
         }
+        
         if (!picture.bytes) {
             handleError("picture", "Please choose a pricing interface image...")
             error = false
@@ -192,17 +194,24 @@ export default function Pricing() {
 
                         </Grid>
                         <Grid size={12} >
-                            <TextField variant="outlined"
-                                fullWidth
-                                helperText={error.typeofservice} // show error text
-                                error={error.typeofservice} // highlight error
-                                value={typeofservice}
-                                label="typeofservice"
-                                value={typeofservice}
-                                onFocus={() => handleError('typeofservice', '')}
-                                onChange={(e) => setTypeOfService(e.target.value)}
-                            >
-                            </TextField>
+                            <FormControl fullWidth >
+                                <FormLabel style={{ marginBottom: '8px' }}>Type of Service</FormLabel>
+                                <div onFocus={() => handleError('typeofservice', '')}>
+
+
+                                    <ReactQuill
+
+                                        theme="snow"
+
+
+                                        value={typeofservice}
+                                        label="typeofservice"
+
+                                        onChange={(e) => setTypeOfService(e)} 
+                                    />
+                                </div>
+                                
+                            </FormControl>
                         </Grid>
                         <Grid size={6} >
                             <TextField variant="outlined"
@@ -222,8 +231,11 @@ export default function Pricing() {
                             <TextField
                                 variant="outlined"
                                 fullWidth
-                                label="Offers"
                                 value={offer}
+                                error={!!error.offer}
+                                helperText={error.offer}
+                                label="Offers"
+                                 onFocus={() => handleError('offer', '')}
                                 onChange={(e) => setOffer(e.target.value)}
 
                             >

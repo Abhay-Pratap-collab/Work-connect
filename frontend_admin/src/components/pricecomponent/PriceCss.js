@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 export const PriceCss = makeStyles({
   root: {
     display: "flex",
-    width: "80vw",
+    width: "70vw",
     height: "100vh",
     justifyContent: "center",
   },
@@ -17,7 +17,7 @@ export const PriceCss = makeStyles({
     border: '0.3px solid #bdc3c7',
   },
   heading: {
-    width: "98%",
+    width: "100%",
     height: 70,
     background: "#78e08f",
     borderTopLeftRadius: 10,

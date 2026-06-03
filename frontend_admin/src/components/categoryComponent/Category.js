@@ -147,7 +147,7 @@ export default function Category() {
                         <Button
                             fullWidth
                             variant="contained"
-                            
+
                             onClick={resetData}
                         >
                             Reset
@@ -155,7 +155,7 @@ export default function Category() {
                     </Grid>
                 </Grid>
             </div>
-            
+
         </div>
     </div>
     )
