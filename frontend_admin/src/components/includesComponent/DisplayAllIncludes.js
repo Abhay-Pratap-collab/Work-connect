@@ -71,8 +71,22 @@ const columns=[
   {accessorKey: "includeid", header:'Include Id',size:100 },
   {accessorKey: "categoryname", header:'Category Name',size:100 },
   {accessorKey: "subcategoryname", header:'SubCategory Name',size:100 },
-  {accessorKey: "include", header:'Include',size:100 },
-  {accessorKey: "exclude", header:'Exclude',size:100 },
+  {accessorKey: "includes", header:'Include',size:100 ,
+  Cell: ({ cell }) => (
+                        <div
+                            dangerouslySetInnerHTML={{ __html: cell.getValue() }}
+                        />
+                    ),
+
+
+  },
+  {accessorKey: "excludes", header:'Exclude',size:100,
+    Cell: ({ cell }) => (
+                        <div
+                            dangerouslySetInnerHTML={{ __html: cell.getValue() }}
+                        />
+                    ),
+   },
 ]
 
 const tabel = useMaterialReactTable({

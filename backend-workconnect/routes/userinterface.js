@@ -29,6 +29,19 @@ router.post("/fetch_all_subcategory_by_categoryid",function(req,res)
    }
 })
 })
+router.post("/fetch_all_pricing",function(req,res){
+   pool.query("select pricing.*,subcategory.* from pricing,subcategory where pricing.subcategoryid=subcategory.subcategoryid and pricing.subcategoryid=?" ,[req.body.subcategoryid], function (error, result) {
+      if (error) {
+         console.log("xxxxx", error)
+         res.status(500).json({ status: false, message: 'Pls Contact to DBA...' })
+      }
+      else {
+         res.status(200).json({ status: true, data: result })
+      }
+
+   })
+
+})
 
 
 

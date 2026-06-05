@@ -5,7 +5,7 @@ import { postData, getData } from "../../services/FetchNodeServices";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 
-import { Grid, FormControl, InputLabel, Select, MenuItem, TextField, Radio, RadioGroup, FormControlLabel, FormLabel, Button, backdropClasses, boxClasses, Paper, Typography } from "@mui/material"
+import { Grid, FormControl, InputLabel, Select, MenuItem, TextField, Radio, RadioGroup, FormControlLabel, FormLabel, Button, backdropClasses, boxClasses, Paper, Typography, FormHelperText } from "@mui/material"
 
 export default function Experts() {
     const classes = useStyle()
@@ -61,11 +61,17 @@ export default function Experts() {
 
     // const [permanentstate, setPermanentState] = useState('')
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')
+    const [error, setError] = useState({})
 
     const handleCategoryChange = (e) => {
-        setCategoryId(e.target.value)
+        const selectedValue = e.target.value;
+
+        setCategoryId(selectedValue);
         fetchAllSubCategory(e.target.value)
+        // 👇 Clear the category error message instantly when a choice is made
+        if (selectedValue && selectedValue !== "") {
+            handleError("categoryid", null);
+        }
 
     }
 
@@ -127,14 +133,14 @@ export default function Experts() {
         }
 
         // // 4. Address & IDs
-        // if (!currentstateid) {
-        //     handleError("stateid", "Select current state");
-        //     error = false;
-        // }
-        // if (!cityid) {
-        //     handleError("cityid", "Select current city");
-        //     error = false;
-        // }
+        if (!currentstateid) {
+            handleError("currentstateid", "Select current state");
+            error = false;
+        }
+        if (!currentcityid) {
+            handleError("currentcityid", "Select current city");
+            error = false;
+        }
         if (currentpincode.length !== 6) {
             handleError("currentpincode", "Invalid current pincode");
             error = false;
@@ -267,6 +273,10 @@ export default function Experts() {
         if (res && res.status) {
             setCurrentCityList(res.data);
         }
+        if (cid && cid !== "") {
+            handleError("currentstateid", null)
+        }
+
     };
 
 
@@ -428,23 +438,48 @@ export default function Experts() {
                 </Typography>
                 <div style={{ margin: 10, width: "96.5%" }}>
                     <Grid container spacing={2}>
+
                         <Grid size={6}>
-                            <FormControl fullWidth variant="standard">
+                            {/* 1. !! turns the string message into a true/false boolean */}
+                            <FormControl fullWidth variant="standard" error={!!error.categoryid}>
                                 <InputLabel>Category</InputLabel>
-                                <Select label="Category" value={categoryid} onChange={handleCategoryChange} >
-                                    <MenuItem>--select Category--</MenuItem>
+                                <Select
+                                    label="Category"
+                                    value={categoryid}
+                                    onChange={handleCategoryChange}
+
+                                >
+                                    {/* 3. Give this an empty value string */}
+                                    <MenuItem value="">--select Category--</MenuItem>
                                     {fillCategory()}
                                 </Select>
-                            </FormControl>
 
+                                {/* 4. Display the error text visually */}
+                                {error.categoryid && <FormHelperText>{error.categoryid}</FormHelperText>}
+                            </FormControl>
                         </Grid>
+
                         <Grid size={6}>
-                            <FormControl fullWidth variant="standard">
+                            <FormControl fullWidth variant="standard" error={!!error.subcategoryid}>
                                 <InputLabel>SubCategory</InputLabel>
-                                <Select label="SubCategory" value={subcategoryid} onChange={(e) => setSubCategoryId(e.target.value)}>
-                                    <MenuItem>--select SubCategory--</MenuItem>
+                                <Select
+                                    label="SubCategory"
+                                    value={subcategoryid}
+                                    onChange={(e) => {
+                                        const selectedValue = e.target.value;
+                                        setSubCategoryId(selectedValue);
+
+                                        // 👇 This tells the error object to remove the warning message instantly
+                                        if (selectedValue && selectedValue !== "") {
+                                            handleError("subcategoryid", null);
+                                        }
+                                    }}
+                                >
+                                    {/* Always remember to give your placeholder a value="" attribute */}
+                                    <MenuItem value="">--select SubCategory--</MenuItem>
                                     {fillSubCategory()}
                                 </Select>
+                                {error.subcategoryid && <FormHelperText>{error.subcategoryid}</FormHelperText>}
                             </FormControl>
                         </Grid>
 
@@ -509,18 +544,25 @@ export default function Experts() {
 
                         </Grid>
                         <Grid size={6}>
-                            <FormControl component="fieldset" variant="outlined" style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '10px', width: '100%' }} >
+                            <FormControl component="fieldset" variant="outlined" error={!!error.gender} style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '10px', width: '100%' }} >
                                 <FormLabel>Gender</FormLabel>
-                                <RadioGroup row value={gender} onChange={(e) => setGender(e.target.value)}
-                                    onFocus={() => handleError('gender', '')}
-                                    helperText={error.gender}
-                                    error={error.gender}
+                                <RadioGroup row value={gender} onChange={(e) => {
+                                    const selectedValue = e.target.value;
+                                    setGender(selectedValue)
+                                    if (selectedValue && selectedValue !== "") {
+                                        handleError("gender", null);
+                                    }
+
+                                }}
+
                                 >
                                     <FormControlLabel value="female" control={<Radio />} label="Female" />
                                     <FormControlLabel value="male" control={<Radio />} label="Male" />
                                     <FormControlLabel value="other" control={<Radio />} label="Other" />
 
                                 </RadioGroup>
+                                {error.gender && <FormHelperText>{error.gender}</FormHelperText>}
+
                             </FormControl>
                         </Grid>
 
@@ -552,25 +594,37 @@ export default function Experts() {
                             <span style={{ justifyContent: "center", display: "flex" }}>Current Address</span>
                         </Grid>
                         <Grid size={4}>
-                            <FormControl fullWidth variant="outlined">
+                            <FormControl fullWidth variant="outlined" error={!!error.currentstateid}>
                                 <InputLabel>State</InputLabel>
                                 <Select value={currentstateid} onChange={handleCurrentStateChange}>
                                     <MenuItem>--select state--</MenuItem>
                                     {/* {fillAllCurrentState()} */}
                                     {fillAllState()}
                                 </Select>
+                                {error.currentstateid && <FormHelperText>{error.currentstateid}</FormHelperText>}
                             </FormControl>
 
                         </Grid>
                         <Grid size={4}>
-                            <FormControl fullWidth variant="outlined">
+                            <FormControl fullWidth variant="outlined" error={!!error.currentcityid}>
                                 <InputLabel>City</InputLabel>
-                                <Select value={currentcityid} onChange={(e) => setCurrentCityId(e.target.value)}>
+                                <Select value={currentcityid} onChange={(e) => {
+                                    const selectedValue = e.target.value
+
+
+
+                                    setCurrentCityId(selectedValue)
+                                    if (selectedValue && selectedValue !== "") {
+                                        handleError("currentcityid", null)
+                                    }
+                                }}>
                                     <MenuItem value="">--select City--</MenuItem>
                                     {currentCityList.map((item) => (
                                         <MenuItem key={item.cityid} value={item.cityid}>{item.cityname}</MenuItem>
                                     ))}
                                 </Select>
+                                {error.currentcityid && <FormHelperText>{error.currentcityid}</FormHelperText>}
+
                             </FormControl>
 
 

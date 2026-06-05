@@ -1,21 +1,25 @@
 "use client"
 import { Grid } from '@mui/material'
-import React, { useState } from 'react'
+import React, { act, useEffect, useState } from 'react'
 import styles from "./SubCategory.module.css"
 import { IoIosArrowForward } from 'react-icons/io'
-import { serverURL,postData } from '@/app/fetchserver/FetchServer'
+import { serverURL, postData } from '@/app/fetchserver/FetchServer'
 
 
-const subcategory = [
-  { image: 'offer.jpg', name: 'Super saver packages' },
-  { image: 'service.jpg', name: 'service' },
-  { image: 'repair.jpg', name: 'Repair & gas refill' },
-  { image: 'installation.jpg', name: 'Installation/uninstallation' },
-]
 
-export default function SubCategories({data}) {
-  const [active, setActive] = useState('')
+export default function SubCategories({ data,pricing,setPricing }) {
+
+  const [active, setActive] = useState(data[0?.subcategoryid])
   const [hover, setHover] = useState("")
+  
+  const fetchPricing = async () => {
+    var response = await postData("userinterface/fetch_all_pricing", { subcategoryid: active })
+setPricing(response?.data)
+  }
+  useEffect(function(){
+    fetchPricing()
+
+  },[active])
 
 
   const fillSubcategory = () => {

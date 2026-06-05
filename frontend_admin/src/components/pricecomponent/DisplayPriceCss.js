@@ -2,14 +2,14 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles({
   root: {
     display: "flex",
-    width: "120vw",
+    width: "100vw",
     height: "100vh",
     justifyContent: "center",
   },
   box: {
     display: "flex",
 
-    width: "80%",
+    width: "90%",
     height: 300,
     borderRadius: 10,
     margin: 10,

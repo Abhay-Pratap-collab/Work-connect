@@ -18,6 +18,8 @@ import { useParams } from "next/navigation";
 export default function subcategory() {
   const [cartItem, setCartItem] = useState([])
   const [subcategory, setSubCategory] = useState([])
+  const [pricing, setPricing] = useState([])
+
   const params = useParams()
   const halfScreen = useMediaQuery("(max-width:900px)")
   const fetchAllSubCategory = async () => {
@@ -35,10 +37,10 @@ export default function subcategory() {
     <Header />
     <div style={{ width: '100vw', maxWidth: '1350px', height: '100%', margin: 'auto', display: 'flex', gap: '30px', padding: '20px', marginTop: '90px' }} >
       <div style={{ width: '320px', height: '100%', display: 'flex', flexDirection: 'column' }} >
-        <SubCategories data={subcategory} />
+        <SubCategories data={subcategory} pricing={pricing} setPricing={setPricing} />
         <div style={{ width: '100%', height: 'auto', display: halfScreen ? "" : "none" }} >
           <Cart cartItem={cartItem} setCartItem={setCartItem} />
-          <Promise />
+          <Promise  />
         </div>
       </div>
       <div style={{ width: '70%', height: '100%', display: 'flex', flexDirection: 'column', gap: '30px' }} >
@@ -47,9 +49,8 @@ export default function subcategory() {
         </div>
         <div style={{ width: '100%', height: '100%', display: 'flex', height: 'auto', position: 'sticky', top: '0px' }} >
           <div style={{ minWidth: '400px', height: 'auto', border: '1px solid #c4c3c3', borderTopLeftRadius: '10px' }} >
-            {/* <Packages cartItem={cartItem} setCartItem={setCartItem}/> */}
-            {/* <PriceComponent/> */}
-            <PriceComponent cartItem={cartItem} setCartItem={setCartItem} />
+            <Packages data={pricing}  cartItem={cartItem} setCartItem={setCartItem}/>
+   
           </div>
           <div style={{ width: '40%', height: '100', borderTop: '1px solid #c4c3c3', padding: '20px', position: 'sticky', top: '10px', display: halfScreen ? "none" : "" }} >
             <Promise />

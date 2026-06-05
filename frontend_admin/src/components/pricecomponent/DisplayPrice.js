@@ -61,7 +61,7 @@ export default function DisplayPrice() {
 
 
     const fetchPricesData = async () => {
-        const res = await getData("price/fetch_all_price");
+        const res = await getData("pricing/fetch_all_price");
         if (res && res.status) { // Check if res exists before checking .status
             setPriceList(res.data);
         } else {
@@ -94,7 +94,7 @@ export default function DisplayPrice() {
                 var body = { priceid: row.original.priceid };
 
                 // 3. Make the API call inside this block
-                var res = await postData("price/delete_price", body);
+                var res = await postData("pricing/delete_price", body);
 
                 if (res.status) {
                     Swal.fire("Deleted!", `${row.original.subcategoryname} has been deleted.`, "success");
@@ -120,9 +120,23 @@ export default function DisplayPrice() {
                 { accessorKey: "priceid", header: "PriceId", size: 100 },
                 { accessorKey: "categoryname", header: "CategoryName", size: 100 },
                 { header: "SubCategoryName", accessorKey: "subcategoryname" },
-                { header: "typeofservice", accessorKey: "typeofservice" },
+                { header: "typeofservice", accessorKey: "typesofservices" },
                 { header: "Amount", accessorKey: 'amount' },
                 { header: "Offer", accessorKey: 'offer' },
+                { header: "Time", accessorKey: 'time_services' },
+
+                // ... your other columns
+                {
+                    header: "Description",
+                    accessorKey: 'discription',
+                    // Custom cell renderer to parse the HTML tags
+                    Cell: ({ cell }) => (
+                        <div
+                            dangerouslySetInnerHTML={{ __html: cell.getValue() }}
+                        />
+                    ),
+                },
+
                 { header: "Image", Cell: ({ renderedCellValue, row }) => <div><img src={`${serverURL}/images/${row.original.picture}`} style={{ width: 40 }} /></div> },
             ]}
             data={priceList}
@@ -144,7 +158,7 @@ export default function DisplayPrice() {
 
                             onClick={() => {
                                 // Logic to open a modal or add a row
-                                navigate('/dashboard/price')
+                                navigate('/dashboard/pricing')
                             }}
                         >
                             <Tooltip title="Add New price">

@@ -8,7 +8,7 @@ import CardandUSer from './CardandUser';
 export default function Header() {
     return (
         <div>
-            <AppBar position='fixed' style={{ background:'#fff', borderBottom: '1px solid rgba(0,0,0,0.05)', boxShadow:'none',zIndex: '1100px' }}>
+            <AppBar position='fixed' style={{ background: '#fff', borderBottom: '1px solid rgba(0,0,0,0.05)', boxShadow: 'none', zIndex: '1100px' }}>
                 <Toolbar style={{ height: '84px' }}>
 
                     <div style={{
@@ -23,25 +23,27 @@ export default function Header() {
                     }}>
                         <div >
 
-                        <img
-                            src='/wcll.png'
-                            style={{ width: 180, height: 150,  marginTop: 10, marginLeft: -75,transition: "transform 0.2s ease-in-out",cursor:'pointer',objectFit: "contain" }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.transform = "scale(1.02)";
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.transform = "scale(1)";
-  }}
-                            alt="Logo"
+                            <img
+                                src='/wcll.png'
+                                style={{ width: 180, height: 150, marginTop: 10, marginLeft: -75, transition: "transform 0.2s ease-in-out", cursor: 'pointer', objectFit: "contain" }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = "scale(1.02)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = "scale(1)";
+                                }}
+                                alt="Logo"
                             />
-                            </div>
+                        </div>
 
-                        <div style={{ color: '#8b8989', fontSize: 15, marginTop: 4, cursor: 'pointer', marginLeft: -20,overflowX: 'auto',
-    overflowY: 'hidden',
-    scrollbarWidth: 'none',
-    transform: 'translateZ(0)', }}>
-                        Native
-                    </div>
+                        <div style={{
+                            color: '#8b8989', fontSize: 15, marginTop: 4, cursor: 'pointer', marginLeft: -20, overflowX: 'auto',
+                            overflowY: 'hidden',
+                            scrollbarWidth: 'none',
+                            transform: 'translateZ(0)',
+                        }}>
+                            Native
+                        </div>
 
                         <div style={{ flexGrow: 1, display: 'flex', paddingLeft: '94px', justifyContent: 'center', }}>
                             <div style={{ width: '100%', maxWidth: '600px' }}> {/* Constrains search width */}

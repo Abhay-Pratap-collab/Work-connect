@@ -5,6 +5,7 @@ import { MdArrowBackIos } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import { MdPriceChange } from "react-icons/md";
 
 import {
   MdApps,
@@ -55,7 +56,7 @@ export default function Dashboard() {
     { name: "Place", icon: <MdAnalytics size={25} />, link: '/dashboard/displayallplace' },
     { name: "Category", icon: <MdAccountBalance size={25} />, link: '/dashboard/displayallcategory' },
     { name: "Sub Category", icon: <MdBookOnline size={25} />, link: '/dashboard/displayallsubcategory' },
-    {name:'Prices',icon:<MdBookOnline size={25}/> ,link:'/dashboard/displayprice'},
+    { name: 'Prices', icon: <MdPriceChange size={25} />, link: '/dashboard/displayprice' },
     { name: "Expert", icon: <MdInsertDriveFile size={25} />, link: '/dashboard/displayallexpert' },
     { name: "Includes", icon: <MdSchool size={25} />, link: '/dashboard/displayallincludes' },
     { name: "Logout", icon: <MdSchool size={25} />, link: '/dashboard/adminlogin' },
@@ -271,9 +272,9 @@ export default function Dashboard() {
           <Route element={<DisplayAllIncludes />} path="/displayallincludes" />
           <Route element={<AppDashboard />} path="/AppDashboard" />
           <Route element={<Login />} path="/adminlogin" />
-          <Route element={<Pricing />} path="/price" />
+          <Route element={<Pricing />} path="/pricing" />
           <Route element={<DisplayPrice />} path="/displayprice" />
-          
+
 
 
 

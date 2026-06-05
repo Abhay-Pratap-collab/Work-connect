@@ -21,8 +21,8 @@ export default function Includes() {
     const [excludes, setExcludes] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState({})
-        var navigate = useNavigate()
-    
+    var navigate = useNavigate()
+
 
 
 
@@ -105,7 +105,7 @@ export default function Includes() {
             setLoading(true)   // show loading
 
             var body = { categoryid, subcategoryid, includes, excludes }
-            var res = await postData("includes/fetch_include", body)
+            var res = await postData("includes/new_include", body)
             if (res.status) {
                 Swal.fire({
                     icon: "success",
@@ -147,7 +147,7 @@ export default function Includes() {
 
                         {/* Title */}
                         <span className={classes.haedingText}>Includes</span>
-                                   <img onClick={() => navigate('/dashboard/displayallincludes')} src="/report.png" className={classes.imageStyle} />
+                        <img onClick={() => navigate('/dashboard/displayallincludes')} src="/report.png" className={classes.imageStyle} />
 
 
                         {/* Navigate to display page */}
@@ -165,8 +165,8 @@ export default function Includes() {
                                     {fillCategory()}
                                 </Select>
                                 <span style={{ color: '#d32f2f', fontSize: 12, marginLeft: 14, marginTop: 5 }}>
-                            {error.categoryid}
-                        </span>
+                                    {error.categoryid}
+                                </span>
                             </FormControl>
 
 
@@ -178,19 +178,19 @@ export default function Includes() {
                                     <MenuItem>--select subcategory --</MenuItem>
                                     {fillSubcategory()}
                                 </Select>
-                                  <span style={{ color: '#d32f2f', fontSize: 12, marginLeft: 14, marginTop: 5 }}>
-                            {error.subcategoryid}
-                        </span>
+                                <span style={{ color: '#d32f2f', fontSize: 12, marginLeft: 14, marginTop: 5 }}>
+                                    {error.subcategoryid}
+                                </span>
                             </FormControl>
                         </Grid>
                         <Grid size={12}>
-                          <ReactQuill theme="snow" value={includes} onChange={(e)=>setIncludes(e)} />
-                            
-                           
+                            <ReactQuill theme="snow" value={includes} onChange={(content) => setIncludes(content)} />
+
+
                         </Grid>
                         <Grid size={12}>
-                                                <ReactQuill theme="snow" value={excludes} onChange={(e)=>setExcludes(e)} />
-                          
+                            <ReactQuill theme="snow" value={excludes} onChange={(content) => setExcludes(content)} />
+
                         </Grid>
 
                         <Grid size={6} className={classes.centerStyle}>
