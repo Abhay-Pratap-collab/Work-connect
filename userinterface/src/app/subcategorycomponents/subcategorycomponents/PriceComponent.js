@@ -141,7 +141,7 @@ const Installation = [
 ]
 
 // 1. Accept the props passed down from subcategory.js
-export default function PriceComponent({data, cartItem, setCartItem }) {
+export default function PriceComponent({ data, cartItem, setCartItem }) {
 
     // 2. Cart Handlers matching the structure Cart.js expects
     const handleCart = (item) => {

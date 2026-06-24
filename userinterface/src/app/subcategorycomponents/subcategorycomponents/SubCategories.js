@@ -7,19 +7,19 @@ import { serverURL, postData } from '@/app/fetchserver/FetchServer'
 
 
 
-export default function SubCategories({ data,pricing,setPricing }) {
+export default function SubCategories({ data, pricing, setPricing }) {
 
   const [active, setActive] = useState(data[0?.subcategoryid])
   const [hover, setHover] = useState("")
-  
+
   const fetchPricing = async () => {
     var response = await postData("userinterface/fetch_all_pricing", { subcategoryid: active })
-setPricing(response?.data)
+    setPricing(response?.data)
   }
-  useEffect(function(){
+  useEffect(function () {
     fetchPricing()
 
-  },[active])
+  }, [active])
 
 
   const fillSubcategory = () => {

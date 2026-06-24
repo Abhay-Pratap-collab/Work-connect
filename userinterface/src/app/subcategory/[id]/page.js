@@ -40,7 +40,7 @@ export default function subcategory() {
         <SubCategories data={subcategory} pricing={pricing} setPricing={setPricing} />
         <div style={{ width: '100%', height: 'auto', display: halfScreen ? "" : "none" }} >
           <Cart cartItem={cartItem} setCartItem={setCartItem} />
-          <Promise  />
+          <Promise />
         </div>
       </div>
       <div style={{ width: '70%', height: '100%', display: 'flex', flexDirection: 'column', gap: '30px' }} >
@@ -49,8 +49,8 @@ export default function subcategory() {
         </div>
         <div style={{ width: '100%', height: '100%', display: 'flex', height: 'auto', position: 'sticky', top: '0px' }} >
           <div style={{ minWidth: '400px', height: 'auto', border: '1px solid #c4c3c3', borderTopLeftRadius: '10px' }} >
-            <Packages data={pricing}  cartItem={cartItem} setCartItem={setCartItem}/>
-   
+            <Packages data={pricing} cartItem={cartItem} setCartItem={setCartItem} />
+
           </div>
           <div style={{ width: '40%', height: '100', borderTop: '1px solid #c4c3c3', padding: '20px', position: 'sticky', top: '10px', display: halfScreen ? "none" : "" }} >
             <Promise />

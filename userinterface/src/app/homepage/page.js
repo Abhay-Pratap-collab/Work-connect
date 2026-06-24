@@ -11,7 +11,7 @@ import { getData, postData } from "../fetchserver/FetchServer";
 import { useRouter } from 'next/navigation';
 export default function HomePage() {
   const [category, setCategory] = useState([])
-   const router = useRouter()
+  const router = useRouter()
   const fetchAllCategory = async () => {
     var response = await getData('userinterface/fetch_all_category')
     setCategory(response.data)

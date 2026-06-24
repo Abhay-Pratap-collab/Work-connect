@@ -19,6 +19,7 @@ export default function Pricing() {
     const [subcategoryList, setSubCategoryList] = useState([])
     const [typeofservice, setTypeOfService] = useState('')
     const [timeservice, setTimeService] = useState('')
+    const [acs,setAcs]=useState('')
     const [picture, setPicture] = useState({ file: '/image-editing.png', bytes: '' })
     const [amount, setAmount] = useState('')
     const [offer, setOffer] = useState('')
@@ -69,6 +70,7 @@ export default function Pricing() {
         setOffer('')
         setTypeOfService('')
         setTimeService('')
+        setAcs('')
         setDiscription('')
         setPicture({ file: '/image-editing.png', bytes: "" })
         setError({})
@@ -113,6 +115,10 @@ export default function Pricing() {
             currentErrors.timeservice = "Service time frame is required."
             isValid = false
         }
+           if (!acs.trim()) {
+            currentErrors.acs = "frame is required."
+            isValid = false 
+        }
 
         // Clean HTML tags check for ReactQuill content
         const cleanDescription = discription ? discription.replace(/<(.|\n)*?>/g, '').trim() : '';
@@ -137,10 +143,11 @@ export default function Pricing() {
             var body = new FormData()
             body.append("categoryid", categoryid)
             body.append("subcategoryid", subCategoryid)
-            body.append("typeosfservices", typeofservice)
+            body.append("typesofservices", typeofservice)
             body.append("amount", amount)
             body.append("offer", offer)
             body.append("time_services", timeservice)
+            body.append('no_of_ac',acs)
             body.append('discription', discription)
             body.append("picture", picture.bytes)
 
@@ -244,7 +251,7 @@ export default function Pricing() {
                         </Grid>
 
                         {/* Time Input */}
-                        <Grid size={12} >
+                        <Grid size={6} >
                             <TextField
                                 variant="outlined"
                                 fullWidth
@@ -254,6 +261,18 @@ export default function Pricing() {
                                 value={timeservice}
                                 onFocus={() => handleError('timeservice', '')}
                                 onChange={(e) => setTimeService(e.target.value)}
+                            />
+                        </Grid>
+                        <Grid size={6} >
+                            <TextField
+                                fullWidth
+                                variant="outlined"
+                                label="No of Acs"
+                                value={acs}
+                                error={!!error.acs}
+                                helperText={error.acs}
+                                onFocus={() => handleError('acs', '')}
+                                onChange={(e) => setAcs(e.target.value)}
                             />
                         </Grid>
 

@@ -24,7 +24,7 @@ export default function Header() {
                         <div >
 
                             <img
-                                src='/wcll.png'
+                                src='/logo.png'
                                 style={{ width: 180, height: 150, marginTop: 10, marginLeft: -75, transition: "transform 0.2s ease-in-out", cursor: 'pointer', objectFit: "contain" }}
                                 onMouseEnter={(e) => {
                                     e.currentTarget.style.transform = "scale(1.02)";
