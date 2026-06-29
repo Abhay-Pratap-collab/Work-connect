@@ -5,6 +5,9 @@ import ServiceCard from './ServiceCard'
 
 
 export default function Packages({ data, cartItem, setCartItem }) {
+    console.log("Packages data:", data);
+  console.log("Is Array:", Array.isArray(data));
+
 
   const fillData = () => {
 

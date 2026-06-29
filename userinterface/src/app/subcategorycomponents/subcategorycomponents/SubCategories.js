@@ -7,26 +7,38 @@ import { serverURL, postData } from '@/app/fetchserver/FetchServer'
 
 
 
-export default function SubCategories({ data, pricing, setPricing }) {
-
-  const [active, setActive] = useState(data[0?.subcategoryid])
+export default function SubCategories({refresh,setRefresh, data, pricing, setPricing }) {
+const [active, setActive] = useState(data?.[0]?.subcategoryid || "");
+  // const [active, setActive] = useState(data[0?.subcategoryid])
   const [hover, setHover] = useState("")
 
-  const fetchPricing = async () => {
-    var response = await postData("userinterface/fetch_all_pricing", { subcategoryid: active })
+  const fetchPricing = async (scid) => {
+    var response = await postData("userinterface/fetch_all_pricing", { subcategoryid: scid })
     setPricing(response?.data)
+    setRefresh(!refresh)
   }
-  useEffect(function () {
-    fetchPricing()
+ 
+  useEffect(function(){
+    if(data.length>0)
+    {
+      setHover(data[0]?.subcategoryid)
+      setActive(data[0]?.subcategoryid)
+      fetchPricing(data[0]?.subcategoryid)
+       setRefresh(!refresh)
+    }
+  },[data])
 
-  }, [active])
+ const handleCategoryClick = (item) => {
+  setActive(item.subcategoryid);
+  fetchPricing(item.subcategoryid);
+};
 
 
   const fillSubcategory = () => {
     return data.map((item, i) => {
       return (
         <Grid size={4} key={i} >
-          <div onClick={() => setActive(item.subcategoryid)} onMouseOver={() => setHover(item.subcategoryid)} onMouseLeave={() => setHover("")} style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', overflowWrap: 'anywhere', gap: '6px', cursor: 'pointer' }} >
+          <div onClick={()=> handleCategoryClick(item)} onMouseOver={() => setHover(item.subcategoryid)} onMouseLeave={() => setHover("")} style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', overflowWrap: 'anywhere', gap: '6px', cursor: 'pointer' }} >
             <img src={`${serverURL}/images/${item.icon}`} style={{ width: '70px', height: '70px', border: active === item.subcategoryid ? "2px solid black" : "none", borderRadius: '10px', padding: '2px' }} />
             <p style={{ fontSize: '12px', color: '#4d4c4c' }} >{item.subcategoryname}</p>
             <div style={{ width: hover === item.subcategoryid ? "90%" : "0%", transition: "width 0.2s linear", color: 'green', background: 'black', height: '1px' }} ></div>

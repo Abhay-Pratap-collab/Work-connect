@@ -1,16 +1,30 @@
 import { useState } from "react";
 import { LuMinus, LuPlus } from "react-icons/lu";
+import { useDispatch } from "react-redux";
+import { addProduct,removeProduct } from "@/app/store/slices/Slicer";
 
-export default function PlusMinus() {
-    const [value, setValue] = useState(0);
+export default function PlusMinus({data,qty}) {
+    const [value, setValue] = useState(qty);
     const [active, setActive] = useState(false);
+    const dispatch = useDispatch()
 
     const handledecrease = () => {
-        setValue(value - 1);
+             var v=value-1
+        setValue(v);
+        if(v==0)
+        {
+            var payload = [data.priceid]
+            dispatch(removeProduct(payload))
+        }
     }
     const handleincrease = () => {
-        setActive(true);
-        setValue(value + 1);
+        // setActive(true);
+        var v=value+1
+        setValue(v);
+        data['qty']=v
+        // alert(JSON.stringify(data))
+        var payload = [data.priceid,data]
+        dispatch(addProduct(payload))
     }
 
     return (<div>

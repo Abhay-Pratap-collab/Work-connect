@@ -19,6 +19,7 @@ export default function subcategory() {
   const [cartItem, setCartItem] = useState([])
   const [subcategory, setSubCategory] = useState([])
   const [pricing, setPricing] = useState([])
+  const [refresh,setRefresh]=useState(false)
 
   const params = useParams()
   const halfScreen = useMediaQuery("(max-width:900px)")
@@ -37,7 +38,7 @@ export default function subcategory() {
     <Header />
     <div style={{ width: '100vw', maxWidth: '1350px', height: '100%', margin: 'auto', display: 'flex', gap: '30px', padding: '20px', marginTop: '90px' }} >
       <div style={{ width: '320px', height: '100%', display: 'flex', flexDirection: 'column' }} >
-        <SubCategories data={subcategory} pricing={pricing} setPricing={setPricing} />
+        <SubCategories refresh={refresh} setRefresh={setRefresh} data={subcategory} pricing={pricing} setPricing={setPricing} />
         <div style={{ width: '100%', height: 'auto', display: halfScreen ? "" : "none" }} >
           <Cart cartItem={cartItem} setCartItem={setCartItem} />
           <Promise />
@@ -54,7 +55,7 @@ export default function subcategory() {
           </div>
           <div style={{ width: '40%', height: '100', borderTop: '1px solid #c4c3c3', padding: '20px', position: 'sticky', top: '10px', display: halfScreen ? "none" : "" }} >
             <Promise />
-            <Cart cartItem={cartItem} setCartItem={setCartItem} />
+            <Cart  />
           </div>
 
         </div>
