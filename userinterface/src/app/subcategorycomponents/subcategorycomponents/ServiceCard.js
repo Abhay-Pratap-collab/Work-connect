@@ -8,7 +8,7 @@ import PlusMinus from './PlusMinus ';
 import { useSelector } from 'react-redux';
 
 
-export default function ServiceCard({ data, cartItem, setCartItem }) {
+export default function ServiceCard({ data, refresh, setRefresh}) {
   var product = useSelector((state) => state.product)
   var cartItems = Object.values(product)
 
@@ -28,7 +28,12 @@ export default function ServiceCard({ data, cartItem, setCartItem }) {
       <div style={{ position: 'relative', marginBottom: '20px' }} >
         <img src={`${serverURL}/images/${data.picture}`} style={{ width: '130px' }} />
 
-        <PlusMinus data={data} qty={cartItems?.find((item) => item?.priceid == data.priceid) ? item?.qty : 0} />
+        <PlusMinus refresh={refresh} setRefresh={setRefresh}
+          data={data}
+          qty={
+            cartItems?.find((item) => item.priceid === data.priceid)?.qty || 0
+          }
+        />
       </div>
     </div>
   )

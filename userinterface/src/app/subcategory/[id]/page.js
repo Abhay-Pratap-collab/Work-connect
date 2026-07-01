@@ -11,7 +11,6 @@ import { useState, useEffect } from "react";
 import Footer from "../../components/headercomponent/footer/Footer";
 import Header from "../../components/headercomponent/header";
 import Slider from "../../subcategorycomponents/subcategorycomponents/Slider";
-import PriceComponent from "../../subcategorycomponents/subcategorycomponents/PriceComponent";
 import { postData } from "@/app/fetchserver/FetchServer";
 import { useParams } from "next/navigation";
 
@@ -19,7 +18,7 @@ export default function subcategory() {
   const [cartItem, setCartItem] = useState([])
   const [subcategory, setSubCategory] = useState([])
   const [pricing, setPricing] = useState([])
-  const [refresh,setRefresh]=useState(false)
+  const [refresh, setRefresh] = useState(false)
 
   const params = useParams()
   const halfScreen = useMediaQuery("(max-width:900px)")
@@ -40,7 +39,7 @@ export default function subcategory() {
       <div style={{ width: '320px', height: '100%', display: 'flex', flexDirection: 'column' }} >
         <SubCategories refresh={refresh} setRefresh={setRefresh} data={subcategory} pricing={pricing} setPricing={setPricing} />
         <div style={{ width: '100%', height: 'auto', display: halfScreen ? "" : "none" }} >
-          <Cart cartItem={cartItem} setCartItem={setCartItem} />
+          <Cart  refresh={refresh} setRefresh={setRefresh}  />
           <Promise />
         </div>
       </div>
@@ -50,12 +49,12 @@ export default function subcategory() {
         </div>
         <div style={{ width: '100%', height: '100%', display: 'flex', height: 'auto', position: 'sticky', top: '0px' }} >
           <div style={{ minWidth: '400px', height: 'auto', border: '1px solid #c4c3c3', borderTopLeftRadius: '10px' }} >
-            <Packages data={pricing} cartItem={cartItem} setCartItem={setCartItem} />
+            <Packages refresh={refresh} setRefresh={setRefresh} data={pricing} cartItem={cartItem} setCartItem={setCartItem} />
 
           </div>
           <div style={{ width: '40%', height: '100', borderTop: '1px solid #c4c3c3', padding: '20px', position: 'sticky', top: '10px', display: halfScreen ? "none" : "" }} >
             <Promise />
-            <Cart  />
+            <Cart refresh={refresh} setRefresh={setRefresh}  />
           </div>
 
         </div>

@@ -1,246 +1,109 @@
 /* check.module.css*/
-.mianContainer{
+
+/* Header css */
+.header {
     width: 100%;
-    /* height: 20%; */
-    
-    border-radius: 5px;
-        background-color: rgba(0, 0, 0, 0.00);
+    height: 72px;
+    background: #fff;
+    border-bottom: 1px solid #ececec;
 
-
-  border: 1px solid #e0e0e0;
-}
-.mainGrid
-{
-    padding: 16px;
-        
-}
-
-.map{
-         transition: box-shadow 0.2s ease-in-out;
-
-}
-
-.box
-{
     display: flex;
-    cursor: pointer;
-    flex-direction: column;
-    align-items: center;    
-    gap: 6px;
-     
+    align-items: center;
 }
-.box:hover .typography::after {
-  width: 100%;
-  left: 0;                /* Flips anchor to the left side so it grows forward */
-    right: auto;          /* Controls how long the line gets (e.g., 60% of the text width) */
+
+.headerContainer {
+    width: 1180px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
 }
-.paper
-{
-    width: 80px;
-    height: 60px;
+
+.logoBox {
+    width: 40px;
+    height: 40px;
+
+    background: #111;
+    border-radius: 8px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
-     transition: box-shadow 0.2s ease-in-out;
-
-
 }
 
-.paper:hover {
-    /* Replicates MUI's soft 'boxShadow: 2' depth level */
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.08);
-   
+.logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
-.typography{
-   
-    font-weight: 500;
-    padding-bottom: 4px;
- display: inline-block;
- position: relative;
-}
-.typography::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;               /* Anchors the line to the right side on exit */
-    left: auto;          /* Starts the line from the center */
- transform: none; /* Centers the line perfectly */
-  width: 0;             /* Starts with zero width */
-  height: 1.5px;          /* Thickness of the underline */
-  background-color: #000; /* Color of the underline (change as needed) */
-  transition: width 0.3s ease-in-out; /* This creates the smooth slow transition */
-}
-.titleDividerContainer {
 
-    display: flex !important;
-    align-items: center;
-    width: 100%;
-    gap: 16px; /* Space between the text and the line */
-    margin-bottom: 8px; /* Extra breathing room before items start */
-}
-.dividerLine {
-    flex-grow: 1;
-    height: 1px;
-    background-color: #e0e0e0; /* Clean, light gray divider line */
-}
-.textsemibold {
-    font-family: 'os_semi_bold', sans-serif;
-    font-size: 14px; /* Bumped slightly for a cleaner section header look */
-    line-height: 16px;
+.checkoutText {
+    margin-left: 16px;
+
+    font-family: os_semi_bold;
+    font-size: 18px;
     font-weight: 600;
-    color: rgb(117, 117, 117);
-    white-space: nowrap; /* Prevents "Select a service" from wrapping to 2 lines */
-    text-transform: none;
+    color: #111;
 }
 
-.container{
-    width: 100%;
-    height: 100%;
+.card {
+    background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 16px;
+    padding: 24px;
 }
 
-.heading{
-    font-size: 35px;
+.title {
+    font-family: os_semi_bold;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 40px;
+    color: #111;
+    margin-bottom: 12px;
 }
 
-.rating{
-    font-size: 15px;
+.subtitle {
+    font-family: os_regular;
+    font-size: 14px;
+    line-height: 22px;
+    color: #545454;
+    margin-bottom: 20px;
+}
+
+.loginBtn {
+    width: 100%;
+    height: 48px;
+    background: #6E42E5 !important;
+    border-radius: 10px !important;
+    text-transform: none !important;
+    font-family: os_semi_bold !important;
+    font-size: 15px !important;
+}
+
+.card {
     display: flex;
-    gap: 5px;
-    margin-top: 5px;
-}
+    align-items: center;
+    gap: 16px;
 
-.subcategorybox{
-    width: 100%;
-    height: auto;
-    border: 1px solid #c2c1c1;
-    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 16px;
+
     padding: 20px;
-    margin-top: 20px;
 }
 
-.icon{
-    width: 60px;
-    height: 65px;
-    border: 2px solid grey;
-    border-radius: 6px;
-    padding: 2px;
-
+.icon {
+    color: #0F8A5F;
+    font-size: 22px;
 }
 
-.image{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;        
-    transition: display 0.5s ease;
+.card h4 {
+    font-family: os_semi_bold;
+    font-size: 15px;
+    margin-bottom: 4px;
 }
 
-.prev{
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 45%;
-    left: 15;
-    background-color: white;
-    border-radius: 50%;
-    border: 0.5px solid grey;
-}
-.next{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    right: 15;
-    transform: translateY(-50%);
-    background-color: white;
-    border-radius: 50%;
-    border: 0.5px solid grey;
-}
-.progressBox{
-    position: absolute;
-    bottom: 18;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 1;
-    width: 90%;
-}
-
-.progressLine{
-    flex: 1;
-    height: 4px;
-    border-radius: 20px;
-    background-color: rgba(255,255,255,0.3);
-    overflow: hidden;
-}
-
-/* service card */
-
-.serviceBox{
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #c4c3c3;
-    padding-bottom: 30px;
-    padding-top: 30px;
-    gap:10px;
-}
-
-.priceBox{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: auto;
-    height: auto;
-    gap: 8px;
-}
-
-.progressBox{
-    position: absolute;
-    bottom: 18;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 1;
-    width: 90%;
-}
-
-.progressLine{
-    flex: 1;
-    height: 4px;
-    border-radius: 20px;
-    background-color: rgba(255,255,255,0.3);
-    overflow: hidden;
-}
-
-/* service card */
-
-.serviceBox{
-    width: 100%;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #c4c3c3;
-    padding-bottom: 30px;
-    padding-top: 30px;
-    gap:10px;
-}
-
-.priceBox{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: auto;
-    height: auto;
-    gap: 8px;
+.card p {
+    font-family: os_regular;
+    font-size: 14px;
+    color: #545454;
 }
