@@ -1,15 +1,17 @@
 "use client"
 import styles from "./payment.module.css"
-import { Button, Grid } from "@mui/material"
+import { Button, Grid, Dialog } from "@mui/material"
 import { useSelector } from "react-redux"
 import { Checkbox } from "@mui/material";
 import PlusMinus from "../subcategorycomponents/subcategorycomponents/PlusMinus "
+import Login from "../subcategorycomponents/subcategorycomponents/Login";
+
 
 import { useEffect, useState } from "react"
 export default function PaymentGetway({ refresh, setRefresh }) {
     var product = useSelector((state) => state.product)
     var cartItems = Object.values(product)
-
+    const [open, setOpen] = useState(false);
     const Header = () => {
         return (
             <div className={styles.header}>
@@ -115,6 +117,16 @@ export default function PaymentGetway({ refresh, setRefresh }) {
                     </div>
 
                 </div>
+                <div className={styles.card}>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold", padding: 10 }}>
+
+                        <span>Amount to pay</span>
+                        <span>₹{amountToPay}</span>
+                    </div>
+
+
+                </div>
+
 
             </div>
         );
@@ -149,7 +161,9 @@ export default function PaymentGetway({ refresh, setRefresh }) {
                     </p>
 
                     <Button
+
                         variant="contained"
+                        onClick={() => setOpen(true)}
                         sx={{
                             background: "#6E42E5",
                             borderRadius: "8px",
@@ -158,7 +172,23 @@ export default function PaymentGetway({ refresh, setRefresh }) {
                         }}
                     >
                         <p className={styles.buttonText}>Login</p>
+
                     </Button>
+                    <Dialog
+                        open={open}
+                        onClose={() => setOpen(false)}
+                        maxWidth="sm"
+                        fullWidth
+                        sx={{
+                            "& .MuiDialog-paper": {
+                                width: "550px",
+                                maxWidth: "100%",
+                                borderRadius: "12px",
+                            },
+                        }}
+                    >
+                        <Login />
+                    </Dialog>
                 </div>
             </div>
 

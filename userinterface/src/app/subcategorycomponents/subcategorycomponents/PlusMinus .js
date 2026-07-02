@@ -3,13 +3,13 @@ import { LuMinus, LuPlus } from "react-icons/lu";
 import { useDispatch } from "react-redux";
 import { addProduct, removeProduct } from "@/app/store/slices/Slicer";
 
-export default function PlusMinus({ data, qty,refresh, setRefresh}) {
+export default function PlusMinus({ data, qty, refresh, setRefresh }) {
     const [value, setValue] = useState(qty);
     const [active, setActive] = useState(false);
     const dispatch = useDispatch()
-    useEffect(()=>{
+    useEffect(() => {
         setValue(qty)
-    },[qty])
+    }, [qty])
 
 
     //
@@ -27,7 +27,7 @@ export default function PlusMinus({ data, qty,refresh, setRefresh}) {
 
             dispatch(addProduct([data.priceid, updatedData]));
         }
-          setRefresh(!refresh)
+        setRefresh(!refresh)
     };
 
 
