@@ -4,8 +4,8 @@ import ServiceCard from './ServiceCard'
 
 
 
-export default function Packages({ data, refresh, setRefresh }) {
-  console.log("Packages data:", data);
+export default function ges({ data, refresh, setRefresh }) {
+  console.log("ges data:", data);
   console.log("Is Array:", Array.isArray(data));
 console.log(data);
 

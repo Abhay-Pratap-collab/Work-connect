@@ -13,6 +13,7 @@ router.post('/chk_admin_password', (req, res, next) => {
             if (result.length == 1) {
                 res.status(200).json({ status: true, message: "Successful" })
             }
+            
             else {
                 res.status(200).json({ status: false, message: "Invalid Email/Mobile Number/Password..." })
             }

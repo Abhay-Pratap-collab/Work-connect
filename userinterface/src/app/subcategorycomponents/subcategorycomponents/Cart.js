@@ -6,9 +6,11 @@ import { LuPlus } from "react-icons/lu";
 import { useSelector } from 'react-redux';
 import PlusMinus from './PlusMinus ';
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
+import { Button } from '@mui/material';
 
 export default function Cart(refresh, setRefresh) {
+  const router = useRouter();
   var product = useSelector((state) => state.product)
   var cartItems = Object.values(product)
 
@@ -19,6 +21,9 @@ export default function Cart(refresh, setRefresh) {
     (total, item) => total + (item.amount * item.qty), 0
   )
 
+  const handleClick = () => {
+    router.push("/paymentgateway");
+  };
   const fillCart = () => {
     return cartItems.map((item, index) => {
 
@@ -42,14 +47,31 @@ export default function Cart(refresh, setRefresh) {
           <h3>Cart</h3>
           {fillCart()}
           <hr></hr>
-
-
-          <Link href="/paymentgateway">
-            <div style={{ width: '100%', height: '45px', borderRadius: '6px', background: '#6f36da', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px', color: 'white' }} >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }} ><h5>₹{totalAmount - totalOfferAmount}</h5><h6><s style={{}} >₹{totalAmount}</s></h6></div><h5>View Cart</h5>
-
+        
+          <Button onClick={handleClick}>
+            <div
+              style={{
+                width: "100%",
+                height: "45px",
+                borderRadius: "6px",
+                background: "#6f36da",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "10px",
+                color: "white",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
+                <h5>₹{totalAmount - totalOfferAmount}</h5>
+                <h6>
+                  <s>₹{totalAmount}</s>
+                </h6>
+              </div>
+              <h5>View Cart</h5>
             </div>
-          </Link>
+          </Button>
+
 
         </div>
 

@@ -5,13 +5,18 @@ import { useSelector } from "react-redux"
 import { Checkbox } from "@mui/material";
 import PlusMinus from "../subcategorycomponents/subcategorycomponents/PlusMinus "
 import Login from "../subcategorycomponents/subcategorycomponents/Login";
-
-
+import Slide from "@mui/material/Slide";
+import React from "react";
+import Otp from "../subcategorycomponents/subcategorycomponents/Otp";
 import { useEffect, useState } from "react"
 export default function PaymentGetway({ refresh, setRefresh }) {
     var product = useSelector((state) => state.product)
     var cartItems = Object.values(product)
     const [open, setOpen] = useState(false);
+    const [step, setStep] = useState("login"); // login | otp
+    const Transition = React.forwardRef(function Transition(props, ref) {
+        return <Slide direction="up" ref={ref} {...props} />;
+    });
     const Header = () => {
         return (
             <div className={styles.header}>
@@ -174,20 +179,36 @@ export default function PaymentGetway({ refresh, setRefresh }) {
                         <p className={styles.buttonText}>Login</p>
 
                     </Button>
+
                     <Dialog
                         open={open}
-                        onClose={() => setOpen(false)}
+                        onClose={() => {
+                            setOpen(false);
+                            setStep("login"); // Reset when dialog closes
+                        }}
                         maxWidth="sm"
-                        fullWidth
+
+                        slots={{
+                            transition: Transition,
+                        }}
                         sx={{
                             "& .MuiDialog-paper": {
                                 width: "550px",
-                                maxWidth: "100%",
+                                maxWidth: "90%",
                                 borderRadius: "12px",
                             },
                         }}
                     >
-                        <Login />
+                        {step === "login" ? (
+                            <Login onContinue={() => setStep("otp")} />
+                        ) : (
+                            <Otp
+                                onBack={() => setStep("login")}
+                                onVerify={() => {
+                                    setOpen(false);
+                                }}
+                            />
+                        )}
                     </Dialog>
                 </div>
             </div>

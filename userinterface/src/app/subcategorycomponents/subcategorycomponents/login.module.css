@@ -2,30 +2,25 @@
 .title {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    
     overflow: hidden;
     text-overflow: ellipsis;
-
     font-family: os_bold;
     font-size: 28px;
     /* line-height: 20px; */
     font-weight: 700;
-
     color: #0f0f0f;
     /* background-color: red; */
 }
+
 .description {
     font-family: "os_regular", sans-serif;
     font-size: 14px;
     /* line-height: 20px; */
     font-weight: 400;
-
     color: #0f0f0f;
-
     text-align: left;
     text-decoration: none;
     text-transform: none;
-
     word-wrap: break-word;
 }
 
@@ -34,13 +29,12 @@
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
-
     color: #757575;
-
     text-align: left;
     text-decoration: none;
     text-transform: none;
 }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -48,7 +42,7 @@
     box-sizing: border-box;
     width: 90%;
     height: 50px;
-   border: 1px solid #e8e8e8;
+    border: 1px solid #e8e8e8;
     /* background-color: yellow; */
     justify-content: center;
     align-items: center;
@@ -66,18 +60,18 @@
     outline: none;
     border: none;
 }
+
 .smallText {
     font-family: "os_regular", sans-serif;
     font-size: 12px;
     line-height: 20px;
     font-weight: 400;
-
     color: #0f0f0f;
-
     text-align: left;
     text-transform: none;
     text-decoration: none;
 }
+
 .phoneBox {
     display: flex;
     width: 100%;

@@ -5,7 +5,9 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 
-export default function Login() {
+
+
+export default function Login({ onContinue }) {
     const [mobile, setMobile] = useState("");
     return (
 
@@ -49,14 +51,20 @@ export default function Login() {
                         </div>
                     </div>
                     <div>
-                        <Button sx={{
-                            background: "#6E42E5",
-                            borderRadius: "8px",
-                            textTransform: "none",
-                            height: 45,
-                            width:'100%',
-                        }} variant='contained' disabled={mobile.length !== 10}>continue
 
+                        <Button
+                            sx={{
+                                background: "#6E42E5",
+                                borderRadius: "8px",
+                                textTransform: "none",
+                                height: 45,
+                                width: "100%",
+                            }}
+                            variant="contained"
+                            disabled={mobile.length !== 10}
+                            onClick={() => onContinue()}
+                        >
+                            continue
                         </Button>
                     </div>
                     <p className={styles.smallText}>By continuing, you agree to our T&C and Privacy policy.</p>
