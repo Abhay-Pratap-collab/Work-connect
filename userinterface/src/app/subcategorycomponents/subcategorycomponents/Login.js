@@ -4,11 +4,32 @@ import styles from "./login.module.css"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Button } from '@mui/material';
 import { useState } from 'react';
+import { postData } from '@/app/fetchserver/FetchServer';
 
 
 
 export default function Login({ onContinue }) {
     const [mobile, setMobile] = useState("");
+    const [otp, setOtp] = useState('')
+    const [otpg, setOtpg] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const generateOtp = () => {
+        var otps = parseInt(Math.random() * 899999) + 100000
+        // alert('ott',otps)
+        alert(`Your OTP is ${otps}`); // Only for testing
+
+        setOtpg(otps)
+        onContinue(mobile, otps);
+
+    }
+    const sendOTP = async () => {
+        generateOtp()
+        // setLoading(true)
+
+
+    }
+    
     return (
 
         <div>
@@ -62,7 +83,7 @@ export default function Login({ onContinue }) {
                             }}
                             variant="contained"
                             disabled={mobile.length !== 10}
-                            onClick={() => onContinue()}
+                            onClick={sendOTP}
                         >
                             continue
                         </Button>

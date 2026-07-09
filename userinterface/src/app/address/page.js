@@ -15,7 +15,7 @@ export default function Address({ refresh, setRefresh }) {
     var cartItems = Object.values(product)
 
     const [open, setOpen] = useState(false);
-    const [step, setStep] = useState("login"); // login | otp
+    
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
     });
@@ -106,7 +106,7 @@ export default function Address({ refresh, setRefresh }) {
 
                     <h4 className={styles.paymentHeading}>Payment Summary</h4>
 
-                    <div style={{ display: "flex", justifyContent: "space-between", padding: 10 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 20,padding:10 }}>
                         <span>Item Total</span>
                         <span>₹{itemTotal}</span>
                     </div>
@@ -152,7 +152,7 @@ export default function Address({ refresh, setRefresh }) {
 
                     </TextField>
                     <Button
-                    
+
                         sx={{
                             background: "#6E42E5",
                             borderRadius: "8px",
@@ -212,9 +212,9 @@ export default function Address({ refresh, setRefresh }) {
                             borderRadius: "8px",
                             textTransform: "none",
                             fontSize: "16px",
-                            
+
                             fontWeight: 600,
-                           
+
                         }}
                     >
                         Select address

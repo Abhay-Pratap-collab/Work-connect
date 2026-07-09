@@ -5,15 +5,18 @@
 import React, { useState, useRef } from "react";
 import { Button, Box } from "@mui/material";
 import styles from "./login.module.css";
+import { postData } from '@/app/fetchserver/FetchServer';
 
 import { useRouter } from "next/navigation";
 
-export default function Otp() {
+export default function Otp({ mobile, generatedOtp,
+    onBack,
+    onVerify, }) {
+
+
     const router = useRouter();
-    const handleClick = () => {
-        alert('hoi')
-        router.push("/address");
-    };
+
+
 
     const [otp, setOtp] = useState(["", "", "", "", "", ""]);
     const refs = useRef([]);
@@ -45,6 +48,44 @@ export default function Otp() {
     };
     const isComplete = otp.every((digit) => digit !== "");
 
+    const verifyOTP = async () => {
+        const enteredOtp = otp.join("");
+
+        if (enteredOtp === generatedOtp.toString()) {
+
+            alert("OTP Verified");
+
+            const response = await checkMobileNumber();
+
+            console.log("Response:", response);
+
+            if (!response) {
+                alert("API request failed");
+                return;
+            }
+
+            if (response.status) {
+                alert("User Found");
+                onVerify();
+                router.push("/address");
+            } else {
+                alert("User Not Found");
+                router.push("/address");
+            }
+
+        } else {
+            alert("Invalid OTP");
+        }
+    };
+
+    const checkMobileNumber = async () => {
+        const response = await postData(
+            "users/check_user_mobileno",
+            { phone: mobile }
+        );
+
+        return response;
+    };
 
     return (
         <div>
@@ -57,7 +98,7 @@ export default function Otp() {
                         <h3 className={styles.title}>Enter verification code</h3>
 
                         <p className={styles.description}>
-                            A 6-digit verification code has been sent to +91 9888888888
+                            A 6-digit verification code has been sent to +91 {mobile}
                         </p>
                         <div style={{ display: 'flex', paddingTop: '10px' }}>
 
@@ -91,7 +132,7 @@ export default function Otp() {
                         </div>
 
                         <Button
-                            onClick={handleClick}
+                            onClick={verifyOTP}
                             variant="contained"
                             fullWidth
                             disabled={!isComplete}

@@ -13,7 +13,9 @@ export default function PaymentGetway({ refresh, setRefresh }) {
     var product = useSelector((state) => state.product)
     var cartItems = Object.values(product)
     const [open, setOpen] = useState(false);
+    const [mobile, setMobile] = useState('')
     const [step, setStep] = useState("login"); // login | otp
+    const [generatedOtp, setGeneratedOtp] = useState("");
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
     });
@@ -200,12 +202,19 @@ export default function PaymentGetway({ refresh, setRefresh }) {
                         }}
                     >
                         {step === "login" ? (
-                            <Login onContinue={() => setStep("otp")} />
+                            <Login onContinue={(mobileNumber, otp) => {
+                                setMobile(mobileNumber); // Save mobile number
+                                setGeneratedOtp(otp);
+                                setStep("otp")
+                            }} />
                         ) : (
                             <Otp
+                                mobile={mobile}
+                                generatedOtp={generatedOtp}
                                 onBack={() => setStep("login")}
                                 onVerify={() => {
                                     setOpen(false);
+
                                 }}
                             />
                         )}
