@@ -3,8 +3,10 @@ import Paper from '@mui/material/Paper';
 import styles from "./login.module.css"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { postData } from '@/app/fetchserver/FetchServer';
+import { useDispatch } from "react-redux";
+import { addUser } from '@/app/store/slices/userSlicer';
 
 
 
@@ -13,6 +15,10 @@ export default function Login({ onContinue }) {
     const [otp, setOtp] = useState('')
     const [otpg, setOtpg] = useState("");
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch()
+    
+  
+      
 
     const generateOtp = () => {
         var otps = parseInt(Math.random() * 899999) + 100000
@@ -24,12 +30,15 @@ export default function Login({ onContinue }) {
 
     }
     const sendOTP = async () => {
+        
         generateOtp()
+        const payload = [mobile, { mobile }];
+dispatch(addUser(payload));
         // setLoading(true)
 
 
     }
-    
+
     return (
 
         <div>

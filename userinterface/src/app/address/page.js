@@ -6,7 +6,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Checkbox } from "@mui/material";
 import PlusMinus from "../subcategorycomponents/subcategorycomponents/PlusMinus "
 import Login from "../subcategorycomponents/subcategorycomponents/Login";
-import Slide from "@mui/material/Slide";
+import Slide from "@mui/material/Slide";    
 import React from "react";
 import Otp from "../subcategorycomponents/subcategorycomponents/Otp";
 import { useEffect, useState } from "react"
@@ -14,8 +14,11 @@ export default function Address({ refresh, setRefresh }) {
     var product = useSelector((state) => state.product)
     var cartItems = Object.values(product)
 
+    var users = useSelector((state)=> state.users)
+    const user = Object.values(users)[0];
+    console.log(user)
     const [open, setOpen] = useState(false);
-    
+
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
     });
@@ -106,7 +109,7 @@ export default function Address({ refresh, setRefresh }) {
 
                     <h4 className={styles.paymentHeading}>Payment Summary</h4>
 
-                    <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 20,padding:10 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 20, padding: 10 }}>
                         <span>Item Total</span>
                         <span>₹{itemTotal}</span>
                     </div>
@@ -188,7 +191,7 @@ export default function Address({ refresh, setRefresh }) {
 
                     <div className={styles.textBox}>
                         <h4>Send booking details to</h4>
-                        <p>+91 9198874604</p>
+                        <p>+91 {user?.mobile}</p>
                     </div>
                 </div>
                 <div className={styles.addressCard}>

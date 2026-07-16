@@ -6,15 +6,15 @@ import React, { useState, useRef } from "react";
 import { Button, Box } from "@mui/material";
 import styles from "./login.module.css";
 import { postData } from '@/app/fetchserver/FetchServer';
-
+import { useDispatch } from "react-redux";
+import { addUser } from "@/app/store/slices/userSlicer";
 import { useRouter } from "next/navigation";
 
-export default function Otp({ mobile, generatedOtp,
-    onBack,
-    onVerify, }) {
+export default function Otp({ mobile, generatedOtp, onBack, onVerify, }) {
 
 
     const router = useRouter();
+   const dispatch = useDispatch();
 
 
 
@@ -55,9 +55,9 @@ export default function Otp({ mobile, generatedOtp,
 
             alert("OTP Verified");
 
-            const response = await checkMobileNumber();
+            var response = await checkMobileNumber();
 
-            console.log("Response:", response);
+            // console.log("Response:", response);
 
             if (!response) {
                 alert("API request failed");
@@ -65,11 +65,26 @@ export default function Otp({ mobile, generatedOtp,
             }
 
             if (response.status) {
-                alert("User Found");
+                alert("user aleardy exit");
                 onVerify();
+
                 router.push("/address");
             } else {
-                alert("User Not Found");
+                // alert("User Not Found");
+
+                var response = await postData('users/create_user', { mobileno: mobile })
+                // console.log("Create User Response:", response);
+
+                if (!response) {
+                    alert("Create User API failed");
+                    return;
+                }
+                if (response.status) {
+                    alert("user seccesfully created")
+                }
+                else {
+                    alert('fail to user')
+                }
                 router.push("/address");
             }
 
@@ -81,11 +96,12 @@ export default function Otp({ mobile, generatedOtp,
     const checkMobileNumber = async () => {
         const response = await postData(
             "users/check_user_mobileno",
-            { phone: mobile }
+            { mobileno: mobile }
         );
 
         return response;
     };
+
 
     return (
         <div>
