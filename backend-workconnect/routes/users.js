@@ -42,4 +42,48 @@ router.post("/create_user", function (req, res) {
     }
   })
 })
+router.post("/create_address", function (req, res) {
+  pool.query(
+    `INSERT INTO address
+    (
+     mobileno,
+      typeaddress,
+      houseno,
+      area,
+      landmark,
+      city,
+      state,
+      pincode,
+      latitude,
+      longitude,
+      fulladdress
+    )
+    VALUES (?,?,?,?,?,?,?,?,?,?,?)`,
+    [
+      req.body.mobileno,
+      req.body.typeaddress,
+      req.body.houseno,
+      req.body.area,
+      req.body.landmark,
+      req.body.city,
+      req.body.state,
+      req.body.pincode,
+      req.body.latitude,
+      req.body.longitude,
+      req.body.fulladdress,
+    ],
+    function (error, result) {
+      if (error) {
+        console.log(error);
+        return res.json({ status: false, message: error.message });
+      }
+
+      return res.json({
+        status: true,
+        message: "Address saved successfully",
+
+      });
+    }
+  );
+});
 module.exports = router;
