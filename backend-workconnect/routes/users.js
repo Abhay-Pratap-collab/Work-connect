@@ -86,4 +86,84 @@ router.post("/create_address", function (req, res) {
     }
   );
 });
+router.get('/fetch_address/:mobileno', function (req, res) {
+  pool.query(
+    "SELECT * FROM address WHERE mobileno=?",
+    [req.params.mobileno],
+    function (error, result) {
+      if (error) {
+        res.json({ message: "error", status: false });
+      } else {
+        res.json({
+          message: "success",
+          status: true,
+          data: result,
+        });
+      }
+    }
+  );
+});
+router.post('/delete_address', function (req, res) {
+  pool.query("delete from address where addressid=?", [req.body.addressid], function (error, result) {
+    if (error) {
+      res.json({ message: 'error', status: false })
+    }
+    else {
+      res.json({ message: 'succefully', status: true })
+
+    }
+  })
+})
+router.post('/update_address', function (req, res) {
+
+  console.log(req.body);
+
+  pool.query(
+    `UPDATE address
+         SET
+            typeaddress=?,
+            houseno=?,
+            area=?,
+            landmark=?,
+            city=?,
+            state=?,
+            pincode=?,
+            latitude=?,
+            longitude=?,
+            fulladdress=?
+         WHERE addressid=?`,
+    [
+      req.body.typeaddress,
+      req.body.houseno,
+      req.body.area,
+      req.body.landmark,
+      req.body.city,
+      req.body.state,
+      req.body.pincode,
+      req.body.latitude,
+      req.body.longitude,
+      req.body.fulladdress,
+      req.body.addressid
+    ],
+    function (error, result) {
+
+      if (error) {
+        console.log(error);
+        res.json({
+          status: false,
+          message: "Database Error"
+        });
+      }
+      else {
+        res.json({
+          status: true,
+          message: "Address Updated Successfully"
+        });
+      }
+
+    }
+  );
+
+});
+
 module.exports = router;

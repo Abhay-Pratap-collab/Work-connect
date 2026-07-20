@@ -3,148 +3,52 @@ import styles from "./address.module.css"
 import { Button, Grid, Dialog, TextField, Box, Paper, Typography, FormControl, InputLabel, Select, MenuItem, } from "@mui/material"
 import { useSelector } from "react-redux"
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Checkbox } from "@mui/material";
-import PlusMinus from "../subcategorycomponents/subcategorycomponents/PlusMinus "
-import Login from "../subcategorycomponents/subcategorycomponents/Login";
 import Slide from "@mui/material/Slide";
 import React from "react";
-import Otp from "../subcategorycomponents/subcategorycomponents/Otp";
+import CheckoutHeader from "./CheckoutHeader";
+import Check from "../check/page";
 import { useEffect, useState } from "react"
-import { serverURL, postData } from '@/app/fetchserver/FetchServer'
+import { serverURL, postData, getData } from '@/app/fetchserver/FetchServer'
+import { Radio, RadioGroup, FormControlLabel, Card, CardContent } from "@mui/material";
 export default function Address({ refresh, setRefresh }) {
 
+    const [open, setOpen] = useState(false);
+    const [addressList, setAddressList] = useState([]);
+    const [selectedAddress, setSelectedAddress] = useState(null);
+    const [openAddressForm, setOpenAddressForm] = useState(false);
+    const [editMode, setEditMode] = useState(false);
+    const [editData, setEditData] = useState(null);
     var product = useSelector((state) => state.product)
     var cartItems = Object.values(product)
 
     var users = useSelector((state) => state.users)
     const user = Object.values(users)[0];
-    console.log(user)
-    const [open, setOpen] = useState(false);
+    // console.log(users);
+    // console.log(user);
 
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
     });
+    const fetchAddress = async (mobileno) => {
 
+        const response = await getData(`users/fetch_address/${mobileno}`);
+        // console.log(response);
+        // console.log(response.data);
+        // console.log(Array.isArray(response.data));
 
-    const Header = () => {
-        return (
-            <div className={styles.header}>
-                <div className={styles.headerContainer}>
-                    <img
-                        className={styles.headerImage}
-                        src="W.png" ></img>
-                    <h4 >Checkout</h4>
-                </div>
-            </div>
-        )
+        if (response.status) {
+            setAddressList(response.data);
+        }
     }
+    useEffect(() => {
+        if (user?.mobile) {
+            fetchAddress(user.mobile);
+        }
+    }, [user]);
+
     // right side //
 
-    const fillCart = () => {
-        return cartItems.map((item, index) => {
 
-            return (<div key={index} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
-                <p className={styles.typeofservice}>{item.typesofservices}</p>
-                <div className={styles.plusminus}>
-                    <PlusMinus refresh={refresh} setRefresh={setRefresh} data={item} qty={item.qty} />
-                </div>
-                <div className={styles.amount}>
-                    <p>₹{item.offer > 0 ? (item.amount - item.offer) * item.qty : (item.amount) * item.qty}</p>
-                    <s style={{ color: 'grey' }} >₹{item.offer == 0 ? 0 : item.amount * item.qty}</s>
-                </div>
-            </div>)
-        })
-    }
-
-    const RightSide = () => {
-
-        const itemTotal = cartItems.reduce(
-            (sum, item) => sum + item.amount * item.qty,
-            0
-        );
-
-        const offerTotal = cartItems.reduce(
-            (sum, item) => sum + item.offer * item.qty,
-            0
-        );
-
-        const amountToPay = itemTotal - offerTotal;
-
-        return (
-            <div>
-
-                <div className={styles.rightColumn}>
-
-                    <div className={`${styles.card}`}>
-                        <h4>AC Service and Repair</h4>
-
-                        <div style={{ paddingTop: "10px" }}>
-                            {fillCart()}
-                        </div>
-                        <div className={styles.checkboxRow}>
-
-                            <Checkbox
-                                sx={{
-                                    color: "black",
-                                    "&.Mui-checked": {
-                                        color: "black",
-                                    },
-                                    "&:hover": {
-                                        backgroundColor: "transparent",
-                                    },
-                                }}
-                            />
-
-                            <span className={styles.checkboxText}>
-                                Avoid calling before reaching the location
-                            </span>
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className={styles.coupon}>
-                    <p className={styles.couponTextFirst}>Coupons and Offers</p>
-                    <p className={styles.couponSecond}>Login / Sign up to view offers</p>
-                </div>
-
-                <div className={styles.card}>
-
-                    <h4 className={styles.paymentHeading}>Payment Summary</h4>
-
-                    <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 20, padding: 10 }}>
-                        <span>Item Total</span>
-                        <span>₹{itemTotal}</span>
-                    </div>
-
-                    <div style={{ display: "flex", justifyContent: "space-between", padding: 10 }}>
-                        <span>Offer</span>
-                        <span>-₹{offerTotal}</span>
-                    </div>
-
-                    <hr />
-
-                    <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold", padding: 10 }}>
-                        <span>Amount to pay</span>
-                        <span>₹{amountToPay}</span>
-                    </div>
-
-                </div>
-                <div className={styles.card}>
-                    <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "bold", padding: 10 }}>
-
-                        <span>Amount to pay</span>
-                        <span>₹{amountToPay}</span>
-                    </div>
-
-
-                </div>
-
-
-            </div>
-        );
-    };
     const NewAddress = () => {
         const [address, setAddress] = useState({
             mobileno: "",
@@ -159,6 +63,15 @@ export default function Address({ refresh, setRefresh }) {
             longitude: "",
             fulladdress: "",
         });
+        useEffect(() => {
+
+            if (editMode && editData) {
+
+                setAddress(editData);
+
+            }
+
+        }, [editMode, editData]);
         const handleChange = (e) => {
             setAddress({
                 ...address,
@@ -167,10 +80,38 @@ export default function Address({ refresh, setRefresh }) {
         };
         const handleSubmit = async () => {
             alert('hii')
-            const response = await postData("users/create_address", {
-                ...address,
-                mobileno: users.mobileno,
-            });
+            let response;
+
+            if (editMode) {
+
+                response = await postData(
+                    "users/update_address",
+                    address
+                );
+
+                if (response.status) {
+                    await fetchAddress(user.mobile);   // Refresh updated addresses
+                    setOpenAddressForm(false);
+                    setEditMode(false);
+                    setEditData(null);
+                }
+
+            }
+            else {
+
+                response = await postData(
+
+                    "users/create_address",
+
+                    {
+                        ...address,
+                        mobileno: user.mobile
+                    }
+
+                );
+
+            }
+            ;
             if (response.status) {
                 alert("Address saved successfully");
 
@@ -190,10 +131,6 @@ export default function Address({ refresh, setRefresh }) {
             else {
                 alert(response.message);
             }
-
-
-
-
         }
         return (
             <Box
@@ -344,7 +281,7 @@ export default function Address({ refresh, setRefresh }) {
                                     fontWeight: "bold",
                                 }}
                             >
-                                Save Address
+                                {editMode ? "Update Address" : "Save Address"}
                             </Button>
                         </Grid>
                     </Grid>
@@ -354,34 +291,165 @@ export default function Address({ refresh, setRefresh }) {
 
     }
     const SavedAddress = () => {
-        return (<div>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: "10px", }}>
-                <div style={{ width: '100%', background: '#fff', borderRadius: '10px', padding: '10px', gap: '20px', flexDirection: 'column', display: 'flex' }}>
-                    <div>
-                        <h3 className={styles.title}>Saved address</h3>
-                    </div>
-                    <TextField
-                        placeholder="add another address "
-                        fullWidth
-                    >
 
-                    </TextField>
-                    <Button
+        const handleDelete = async (addressid) => {
 
-                        sx={{
-                            background: "#6E42E5",
-                            borderRadius: "8px",
-                            textTransform: "none",
-                            height: 45
-                        }}
-                    >
-                        <p className={styles.buttonText}>proceed</p>
-                    </Button>
-                </div>
+            const response = await postData(
+                "users/delete_address",
+                { addressid }
+            );
+
+            if (response.status) {
+                alert(response.message);
+                fetchAddress(user.mobile);
+            } else {
+                alert(response.message);
+            }
+        }
+        const handleEdit = (item) => {
+            alert("Edit API : " + item.addressid);
+            setEditMode(true);
+
+            setEditData(item);
+
+            setOpen(false);
+
+            setOpenAddressForm(true);
+        }
+
+        return (
+            <div style={{ padding: 20 }}>
+
+                <Typography variant="h5" fontWeight="bold">
+                    Select Address
+                </Typography>
+
+                <RadioGroup>
+
+                    {
+                        Array.isArray(addressList) &&
+                        addressList.map((item) => (
+
+                            <Card
+                                key={item.addressid}
+                                sx={{
+                                    mt: 2,
+                                    borderRadius: 3
+                                }}
+                            >
+                                <CardContent>
+                                    <FormControlLabel
+                                        value={item.addressid}
+                                        control={
+                                            <Radio
+                                                checked={
+                                                    selectedAddress?.addressid ==
+                                                    item.addressid
+                                                }
+
+                                                onChange={() =>
+                                                    setSelectedAddress(item)
+                                                }
+
+                                            />
+                                        }
+                                        label={
+                                            <div>
+
+                                                <h3>{item.typeaddress}</h3>
+
+                                                <p>{item.fulladdress}</p>
+
+                                                <p>
+
+                                                    {item.city},
+
+                                                    {item.state}
+
+                                                    -
+
+                                                    {item.pincode}
+
+                                                </p>
+
+                                            </div>
+                                        }
+
+                                    />
+
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            gap: 10,
+                                            marginTop: 10
+                                        }}
+                                    >
+                                        <Button
+                                            variant="outlined"
+                                            onClick={() => handleEdit(item)}
+                                        >
+                                            Edit
+                                        </Button>
+
+                                        <Button
+                                            color="error"
+                                            variant="outlined"
+                                            onClick={() =>
+                                                handleDelete(item.addressid)
+                                            }
+                                        >
+                                            Delete
+                                        </Button>
+
+                                    </div>
+
+                                </CardContent>
+
+                            </Card>
+
+                        ))
+                    }
+                </RadioGroup>
+                <Button
+                    fullWidth
+                    variant="outlined"
+                    sx={{ mt: 3 }}
+                    onClick={() => {
+                        setEditMode(false);
+                        setEditData(null);
+                        setOpen(false);
+                        setOpenAddressForm(true);
+                    }}
+                >
+                    + Add New Address
+                </Button>
+                <Button
+
+                    fullWidth
+
+                    variant="contained"
+
+                    sx={{ mt: 2 }}
+
+                    disabled={!selectedAddress}
+
+                    onClick={() => {
+
+                        console.log(selectedAddress)
+
+                        setOpen(false)
+
+                    }}
+
+                >
+
+                    Continue
+
+                </Button>
 
             </div>
+        )
 
-        </div>)
     }
 
     const Account = () => {
@@ -444,13 +512,33 @@ export default function Address({ refresh, setRefresh }) {
                             },
                         }}
                         onClose={() => {
+
                             setOpen(false)
+
                         }}
 
                     >
-                        {/* <SavedAddress /> */}
+
+
+                        <SavedAddress />
+                    </Dialog>
+                    <Dialog
+
+                        open={openAddressForm}
+
+                        onClose={() => setOpenAddressForm(false)}
+
+                        sx={{
+                            "& .MuiDialog-paper": {
+                                width: "750px",
+                                maxWidth: "90%"
+                            }
+                        }}
+
+                    >
 
                         <NewAddress />
+
                     </Dialog>
                 </div>
 
@@ -467,7 +555,7 @@ export default function Address({ refresh, setRefresh }) {
     return (
 
         <div>
-            {Header()}
+            <CheckoutHeader />
             <div style={{ paddingLeft: '200px', paddingRight: '200px', paddingTop: '30px' }} >
 
                 <Grid spacing={2} container>
@@ -477,7 +565,8 @@ export default function Address({ refresh, setRefresh }) {
 
 
                     <Grid size={6}>
-                        <RightSide />
+                        {/* <RightSide /> */}
+                        <Check />
 
                     </Grid>
                 </Grid>
