@@ -1,7 +1,6 @@
 "use client";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-// import { serverURL } from "../fetchserver/FetchServer";
 import { serverURL } from "../../fetchserver/FetchServer";
 
 
@@ -15,12 +14,12 @@ function srcset(image, size, rows = 1, cols = 1) {
 }
 export default function HoemPageImage({ data }) {
   return (
-    <div style={{ display: 'flex', width: '93%' }}>
+    <div style={{ display: 'flex', }}>
 
 
       <ImageList
         sx={{
-          width: 700,
+          width: '100%',
           height: 660,
 
           '&::-webkit-scrollbar': {
@@ -42,6 +41,11 @@ export default function HoemPageImage({ data }) {
               {...srcset(item.img, 121, item.rows, item.cols)}
               alt={item.title}
               loading="lazy"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover", // cover, contain, fill
+              }}
             />
           </ImageListItem>
         ))}

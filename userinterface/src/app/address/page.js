@@ -6,11 +6,15 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Slide from "@mui/material/Slide";
 import React from "react";
 import CheckoutHeader from "./CheckoutHeader";
-import Check from "../check/page";
 import { useEffect, useState } from "react"
 import { serverURL, postData, getData } from '@/app/fetchserver/FetchServer'
+import RightCard from "./Rightcard";
+import Slot from "./Slot";
 import { Radio, RadioGroup, FormControlLabel, Card, CardContent } from "@mui/material";
-export default function Address({ refresh, setRefresh }) {
+import { useDispatch } from "react-redux";
+import { addUser, updateuser } from "../store/slices/userSlicer";
+import PaymentCard from "./PaymentCard";
+export default function Address({ refresh, setRefresh,  }) {
 
     const [open, setOpen] = useState(false);
     const [addressList, setAddressList] = useState([]);
@@ -18,8 +22,16 @@ export default function Address({ refresh, setRefresh }) {
     const [openAddressForm, setOpenAddressForm] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState(null);
+    const [showaddress, setShowAddress] = useState("");
+    const [addressConfirmed, setAddressConfirmed] = useState(false);
+    const [slotBooked, setSlotBooked] = useState(false);
+   
+
+    const dispatch = useDispatch()
+
     var product = useSelector((state) => state.product)
     var cartItems = Object.values(product)
+    // alert(JSON.stringify(setSelectedAddress))
 
     var users = useSelector((state) => state.users)
     const user = Object.values(users)[0];
@@ -94,6 +106,8 @@ export default function Address({ refresh, setRefresh }) {
                     setOpenAddressForm(false);
                     setEditMode(false);
                     setEditData(null);
+                    // var payload={mobileno,body}
+                    // dispatch(updateuser({payload}))
                 }
 
             }
@@ -356,7 +370,7 @@ export default function Address({ refresh, setRefresh }) {
                                         label={
                                             <div>
 
-                                                <h3>{item.typeaddress}</h3>
+                                                <p>{item.typeaddress}</p>
 
                                                 <p>{item.fulladdress}</p>
 
@@ -435,8 +449,11 @@ export default function Address({ refresh, setRefresh }) {
 
                     onClick={() => {
 
-                        console.log(selectedAddress)
+                        setShowAddress(
+                            `${selectedAddress.houseno}, ${selectedAddress.area}, ${selectedAddress.city}, ${selectedAddress.state} - ${selectedAddress.pincode}`
+                        );
 
+                        setAddressConfirmed(true);
                         setOpen(false)
 
                     }}
@@ -461,16 +478,16 @@ export default function Address({ refresh, setRefresh }) {
 
         return (
             <div>
-                <div className={styles.saving}>
+                {/* <div className={styles.saving}>
                     <p className={styles.tatalSaving}>💚 Saving ₹{totalSaving} on this order</p>
-                </div>
+                </div> */}
                 <div className={styles.bookingBox}>
                     <div className={styles.iconBox}>
                         <LocationOnIcon sx={{ color: "#6b6b6b", fontSize: 22 }} />
                     </div>
 
                     <div className={styles.textBox}>
-                        <h4>Send booking details to</h4>
+                        <p className={styles.headingCss}>Send booking details to</p>
                         <p>+91 {user?.mobile}</p>
                     </div>
                 </div>
@@ -480,14 +497,22 @@ export default function Address({ refresh, setRefresh }) {
                             <LocationOnIcon sx={{ color: "#666", fontSize: 22 }} />
                         </div>
 
-                        <h4>Address</h4>
+                        <p className={styles.headingCss}>Address</p>
+                        <br></br>
+
                     </div>
+                    <p>{showaddress}</p>
+
 
                     <Button
                         variant="contained"
                         fullWidth
                         // disabled
-                        onClick={() => setOpen(true)}
+                        onClick={() => {
+
+                            setOpen(true);
+                        }}
+
                         sx={{
                             mt: 2,
                             height: 48,
@@ -534,20 +559,11 @@ export default function Address({ refresh, setRefresh }) {
                                 maxWidth: "90%"
                             }
                         }}
-
                     >
-
                         <NewAddress />
-
                     </Dialog>
                 </div>
-
             </div>
-
-
-
-
-
         )
     }
 
@@ -561,13 +577,18 @@ export default function Address({ refresh, setRefresh }) {
                 <Grid spacing={2} container>
                     <Grid size={6}>
                         <Account />
+                        <Slot disabled={!addressConfirmed} setSlotBooked={setSlotBooked}  />
+                        <PaymentCard slotBooked={slotBooked} />
+                        <div style={{ marginTop: '20px', padding: '10px' }}>
+                            <p className={styles.Cancellation}>  Cancellation policy</p>
+                            <p style={{ color: '#666', paddingTop: '10px' }}>Free cancellations if done more than 12 hrs before the service. A fee will be charged otherwise.</p>
+                        </div>
                     </Grid>
 
 
                     <Grid size={6}>
                         {/* <RightSide /> */}
-                        <Check />
-
+                        <RightCard />
                     </Grid>
                 </Grid>
             </div>

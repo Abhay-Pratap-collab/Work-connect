@@ -204,79 +204,105 @@
     text-align: left;
 
 }
+
 .bookingBox {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px;
-  background: #fff;
-  /* background-color: red; */
-  border: 1px solid #e5e5e5;
-  
-  cursor: pointer;
-  transition: 0.3s;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    background: #fff;
+    /* background-color: red; */
+    border: 1px solid #e5e5e5;
+
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 
 .iconBox {
-  width: 40px;
-  height: 40px;
-  background: #f3f3f3;
-  /* background-color: red; */
-  border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    background: #f3f3f3;
+    /* background-color: red; */
+    border-radius: 8px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .textBox {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .textBox h4 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #222;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    /* color: #222; */
 }
 
 .textBox p {
-  margin-top: 6px;
-  font-size: 15px;
-  color: #666;
+    margin-top: 6px;
+    font-size: 15px;
+    color: #666;
 }
+
 .addressCard {
-  width: 100%;
-  background: #fff;
-  border: 1px solid #e6e6e6;
-  /* border-radius: 12px; */
-  padding: 18px 20px;
-  box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    /* border-radius: 12px; */
+    padding: 18px 20px;
+    box-sizing: border-box;
 }
 
 .addressHeader {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
 .iconContainer {
-  width: 40px;
-  height: 40px;
-  background: #f3f3f3;
-  border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    background: #f3f3f3;
+    border-radius: 8px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .addressHeader h4 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 600;
-  color: #1f1f1f;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #1f1f1f;
+}
+
+.headingCss {
+    /* font-family: os_semi_bold; */
+    font-size: 14px;
+    line-height: 20px;
+    
+    color: black !important;
+    text-decoration-line: none;
+    text-transform: none;
+    font-weight:500;
+    text-align: left;
+}
+.Cancellation
+
+{
+   font-size: 24px;
+    line-height: 20px;
+    
+    color: black !important;
+    text-decoration-line: none;
+    text-transform: none;
+    font-weight:530;
+    text-align: left;
 }

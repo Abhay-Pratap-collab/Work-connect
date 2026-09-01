@@ -2,6 +2,7 @@
 .Footer {
     width: 100%;
     background-color: #f5f5f5;
+ 
 }
 
 .main-div {
@@ -14,10 +15,12 @@
 }
 
 .logo {
-    width: 15.625rem;
+    width: 10.625rem;
     /* Equivalent to 250px (250 / 16) */
     height: auto;
     max-width: 100%;
+    display: flex;
+    padding: 40px;
 }
 
 .companyTitle {
@@ -25,13 +28,15 @@
     flex-direction: column;
     gap: 14px;
     margin-left: 22px;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 
 
 .companyLink {
     color: #8b8989;
-    font-size: 15px;
+    font-size: 14px;
     /* Added 'px' */
     margin-top: 4px;
     /* Added 'px' */
@@ -42,15 +47,17 @@
     scrollbar-width: none;
     transform: translateZ(0);
 }
+
 .socialdata {
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
+
 .socialContainer {
-  display: flex;
-  gap: 15px;
-  align-items: center;
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
 
 .sociallink {
@@ -65,18 +72,23 @@
     align-items: center;
     cursor: pointer;
     outline: none;
-    
+
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
 }
+
 .footerDisclaimerContainer {
-  margin-bottom: 24px; /* Adjust this number to add more or less space */
-  flex-direction: column;
-  display: flex;
-  width: 100%;
+    margin-bottom: 24px;
+    /* Adjust this number to add more or less space */
+    /* flex-direction: column; */
+   
+
+    width: 100%;
 }
+
 .captionText {
-  color: #8b8989;
-  font-size: 14px;
-  line-height: 1.5;
-  display: block;
+    color: #8b8989;
+    font-size: 14px;
+    line-height: 1.5;
+
+
 }

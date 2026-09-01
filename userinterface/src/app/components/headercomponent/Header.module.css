@@ -1,0 +1,33 @@
+/* Header.module.css */
+.appbar {
+    background: #ffff !important;
+    color: white;
+    box-shadow: none !important;
+    border-bottom: 1px solid #f5f5f5;
+
+}
+
+.native {
+    color: #8b8989;
+    font-size: 15px;
+    cursor: pointer;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE & Edge */
+
+    transform: translateZ(0);
+    margin-left: 50px;
+}
+.searchBarDiv
+{
+      flex-grow: 1;
+  display: flex;
+  padding-left: 50px;
+  justify-content: center;
+
+}

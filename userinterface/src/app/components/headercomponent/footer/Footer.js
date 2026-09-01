@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Grid, Container, Typography } from "@mui/material";
+import { Grid, Container, Typography, Box } from "@mui/material";
 
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -44,8 +44,8 @@ export default function Footer() {
   const socialData = {
     title: "Social links",
     socialIcons: [
-     <a href="https://www.instagram.com/accounts/login/?hl=en"> <InstagramIcon /></a>,
-     <a href="https://www.facebook.com/"> <FacebookIcon /></a>,
+      <a href="https://www.instagram.com/accounts/login/?hl=en"> <InstagramIcon /></a>,
+      <a href="https://www.facebook.com/"> <FacebookIcon /></a>,
       <TwitterIcon />,
       <LinkedInIcon />,
     ],
@@ -59,7 +59,7 @@ export default function Footer() {
         <div>
 
           <img
-            src="wcll.png"
+            src="abc.png"
             alt=""
             className={styles.logo}
           />
@@ -72,16 +72,20 @@ export default function Footer() {
 
           {/* COMPANY */}
           <Grid item={"true"} xs={12} sm={6} md={3}>
+          
             <div
+          
+
               className={styles.companyTitle}
             >
-              <h2>{companyData.title}</h2>
+              <p>{companyData.title}</p>
+
 
               {companyData.links.map((link, i) => (
                 <span
                   key={i}
                   style={{
-                    color: '#8b8989', fontSize: 15, marginTop: 4, cursor: 'pointer', overflowX: 'auto',
+                    color: '#8b8989', fontSize: 14, marginTop: 4, cursor: 'pointer', overflowX: 'auto',
                     overflowY: 'hidden',
                     scrollbarWidth: 'none',
                     transform: 'translateZ(0)',
@@ -108,7 +112,7 @@ export default function Footer() {
                 <span
                   key={i}
                   style={{
-                    color: '#8b8989', fontSize: 15, marginTop: 4, cursor: 'pointer', overflowX: 'auto',
+                    color: '#8b8989', fontSize: 14, marginTop: 4, cursor: 'pointer', overflowX: 'auto',
                     overflowY: 'hidden',
                     scrollbarWidth: 'none',
                     transform: 'translateZ(0)',
@@ -162,33 +166,41 @@ export default function Footer() {
                   </div>
                 ))}
               </div>
+              
             </div>
+            <div style={{marginTop:'10px'}}>
+
+                
+                <img src="app.png"  height="34px" />
+                
+
+              </div>
+               <div>
+
+                
+                <img src="playstore.png"  height="70px"/>
+                
+
+              </div>
           </Grid>
 
-          <Grid container spacing={1} className={styles.footerDisclaimerContainer}>
-            <Grid item={"true"} xs={12} sm={6} md={3}>
-              <Typography
-                variant="caption"
-                className={styles.captionText}
-                style={{ marginTop: "4px" }}
-                display="block"
-              >
-                * As on December 31, 2024
-              </Typography>
-            </Grid>
 
-            <Grid item={"true"} xs={12}>
-              <Typography
-                variant="caption"
-                className={styles.captionText}
-              >
-                © Copyright 2026 Urban Company Limited (formerly known as UrbanClap
-                Technologies India Limited and UrbanClap Technologies India India Limited)
-                All rights reserved. | CIN: L74140DL2014PLC274413
-              </Typography>
-            </Grid>
-          </Grid>
+          <Box className={styles.footerDisclaimerContainer}>
+            <Box className={styles.captionText}>
 
+              * As on December 31, 2024
+            </Box>
+
+            <Box className={styles.captionText}>
+              © Copyright 2026 Urban Company Limited (formerly known as UrbanClap
+              Technologies India Limited and UrbanClap Technologies India India Limited)
+              All rights reserved. | CIN: L74140DL2014PLC274413
+
+            </Box>
+
+
+
+          </Box>
         </Grid>
         {/* </Container> */}
       </div>

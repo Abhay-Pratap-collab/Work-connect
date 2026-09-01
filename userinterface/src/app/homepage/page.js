@@ -73,25 +73,29 @@ export default function HomePage() {
   ];
 
 
-  return (<div style={{ width: '100%' }} >
+  return (<div >
     <div>
 
       <Header />
     </div>
-    {/* <div style={{  marginLeft: '10px',padding:'110px',margin:'10ppx'}}> */}
+
     <div style={{
       padding: '110px 50px 20px 50px', // Top padding accounts for fixed header
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center'
+      alignItems: 'center',
+
     }}>
 
 
 
       {/* <Grid container spacing={4}> */}
-      <Grid container spacing={4} style={{ maxWidth: '1350px' }}>
+      <Grid container spacing={1} style={{ width: '90%' }}>
         <Grid size={6}>
-          <CategoryComponent data={category} />
+          <div style={{ background: '' }}>
+
+            <CategoryComponent data={category} />
+          </div>
 
         </Grid>
         <Grid size={6} style={{ marginTop: '15px' }}>
@@ -123,14 +127,6 @@ export default function HomePage() {
 
         <AddComponent />
       </div>
-
-
-
-
-
-
-
-
     </div>
 
     <Footer />

@@ -2,15 +2,14 @@
 import styles from "./payment.module.css"
 import { Button, Grid, Dialog } from "@mui/material"
 import { useSelector } from "react-redux"
-import { Checkbox } from "@mui/material";
-import PlusMinus from "../subcategorycomponents/subcategorycomponents/PlusMinus "
+
 import Login from "../subcategorycomponents/subcategorycomponents/Login";
 import Slide from "@mui/material/Slide";
 import React from "react";
 import CheckoutHeader from "../address/CheckoutHeader";
 import Otp from "../subcategorycomponents/subcategorycomponents/Otp";
-import Check from "../check/page";
 import { useEffect, useState } from "react"
+import RightCard from "../address/Rightcard";
 export default function PaymentGetway({ refresh, setRefresh }) {
     var product = useSelector((state) => state.product)
     var cartItems = Object.values(product)
@@ -129,7 +128,8 @@ export default function PaymentGetway({ refresh, setRefresh }) {
 
                     <Grid size={6}>
                         {/* <RightSide /> */}
-                        <Check />
+                        <RightCard />
+
 
                     </Grid>
                 </Grid>
