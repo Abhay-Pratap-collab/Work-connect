@@ -14,7 +14,7 @@ import { Radio, RadioGroup, FormControlLabel, Card, CardContent } from "@mui/mat
 import { useDispatch } from "react-redux";
 import { addUser, updateuser } from "../store/slices/userSlicer";
 import PaymentCard from "./PaymentCard";
-export default function Address({ refresh, setRefresh,  }) {
+export default function Address({ refresh, setRefresh, }) {
 
     const [open, setOpen] = useState(false);
     const [addressList, setAddressList] = useState([]);
@@ -25,7 +25,7 @@ export default function Address({ refresh, setRefresh,  }) {
     const [showaddress, setShowAddress] = useState("");
     const [addressConfirmed, setAddressConfirmed] = useState(false);
     const [slotBooked, setSlotBooked] = useState(false);
-   
+
 
     const dispatch = useDispatch()
 
@@ -577,7 +577,7 @@ export default function Address({ refresh, setRefresh,  }) {
                 <Grid spacing={2} container>
                     <Grid size={6}>
                         <Account />
-                        <Slot disabled={!addressConfirmed} setSlotBooked={setSlotBooked}  />
+                        <Slot disabled={!addressConfirmed} setSlotBooked={setSlotBooked} />
                         <PaymentCard slotBooked={slotBooked} />
                         <div style={{ marginTop: '20px', padding: '10px' }}>
                             <p className={styles.Cancellation}>  Cancellation policy</p>

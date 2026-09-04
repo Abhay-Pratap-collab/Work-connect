@@ -36,8 +36,8 @@ export default function Slot({ disabled, setSlotBooked, }) {
     const categoryId = cartItems[0]?.categoryid;
     const subcategoryId = cartItems[0]?.subcategoryid;
 
-    console.log("Category ID:", categoryId);
-    console.log("Subcategory ID:", subcategoryId);
+    // console.log("Category ID:", categoryId);
+    // console.log("Subcategory ID:", subcategoryId);
     useEffect(() => {
 
         const fetchExperts = async () => {
@@ -119,109 +119,120 @@ export default function Slot({ disabled, setSlotBooked, }) {
         setOpen(false);
     }
     console.log("open:", open);
+
+
+
     const SelectExperts = () => {
         return (
-            <div style={{ padding: "20px" }}>
+            <div style={{ padding: "20px", }}>
 
                 <h2>Select Expert</h2>
 
                 {matchingExperts.length === 0 ? (
                     <p>No expert available for this service.</p>
                 ) : (
-                    matchingExperts.map((expert) => {
+                    <div
+                        style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            gap: "15px"
+                        }}
+                    >
+                        {matchingExperts.map((expert) => {
 
-                        const isSelected =
-                            selectedExpert === expert.expertid;
+                            const isSelected =
+                                selectedExpert === expert.expertid;
 
-                        return (
-                            <div
-                                key={expert.expertid}
-                                onClick={() =>
-                                    setSelectedExpert(expert.expertid)
-                                }
-                                style={{
-                                    display: "flex",
-                                    cursor: "pointer",
-                                    alignItems: "center",
-                                    gap: "15px",
-                                    padding: "12px",
-                                    borderRadius: "10px",
-                                    marginBottom: "10px",
-
-                                    border: isSelected
-                                        ? "2px solid #6E42E5"
-                                        : "1px solid #ddd",
-
-                                    background: isSelected
-                                        ? "#f0ebff"
-                                        : "#fff",
-
-                                    transition: "0.2s"
-                                }}
-                            >
-
-                                {/* IMAGE */}
+                            return (
                                 <div
+                                    key={expert.expertid}
+                                    onClick={() =>
+                                        setSelectedExpert(expert.expertid)
+                                    }
                                     style={{
-                                        position: "relative",
-                                        width: "65px",
-                                        height: "65px"
+                                        width: "120px",
+                                        padding: "12px",
+                                        borderRadius: "10px",
+                                        cursor: "pointer",
+
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        alignItems: "center",
+
+                                        border: isSelected
+                                            ? "2px solid #6E42E5"
+                                            : "1px solid #ddd",
+
+                                        background: isSelected
+                                            ? "#f0ebff"
+                                            : "#fff",
+
+                                        transition: "0.2s"
                                     }}
                                 >
 
-                                    <img
-                                        src={`${serverURL}/images/${expert.photograph}`}
-                                        alt={`${expert.firstname} ${expert.lastname}`}
+                                    {/* IMAGE */}
+                                    <div
                                         style={{
+                                            position: "relative",
                                             width: "65px",
-                                            height: "65px",
-                                            borderRadius: "50%",
-                                            objectFit: "cover",
-
-                                            filter: isSelected
-                                                ? "brightness(0.7)"
-                                                : "brightness(1)",
-
-                                            transition: "0.2s"
+                                            height: "65px"
                                         }}
-                                    />
-
-                                    {/* TICK */}
-                                    {isSelected && (
-                                        <div
+                                    >
+                                        <img
+                                            src={`${serverURL}/images/${expert.photograph}`}
+                                            alt={`${expert.firstname} ${expert.lastname}`}
                                             style={{
-                                                position: "absolute",
-                                                top: "-5px",
-                                                right: "-5px",
-                                                width: "24px",
-                                                height: "24px",
+                                                width: "65px",
+                                                height: "65px",
                                                 borderRadius: "50%",
-                                                background: "#6E42E5",
-                                                color: "white",
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                                fontWeight: "bold",
-                                                border: "2px solid white"
+                                                objectFit: "cover",
+
+                                                filter: isSelected
+                                                    ? "brightness(0.7)"
+                                                    : "brightness(1)"
                                             }}
-                                        >
-                                            ✓
-                                        </div>
-                                    )}
+                                        />
 
-                                </div>
+                                        {/* TICK */}
+                                        {isSelected && (
+                                            <div
+                                                style={{
+                                                    position: "absolute",
+                                                    top: "-5px",
+                                                    right: "-5px",
+                                                    width: "24px",
+                                                    height: "24px",
+                                                    borderRadius: "50%",
+                                                    background: "#6E42E5",
+                                                    color: "white",
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                    fontWeight: "bold",
+                                                    border: "2px solid white"
+                                                }}
+                                            >
+                                                ✓
+                                            </div>
+                                        )}
+                                    </div>
 
-                                {/* EXPERT NAME */}
-                                <div>
-                                    <h3 style={{ margin: 0 }}>
-                                        {expert.firstname}{" "}
-                                        {expert.lastname}
+                                    {/* NAME */}
+                                    <h3
+                                        style={{
+                                            margin: "8px 0 0",
+                                            fontSize: "15px",
+                                            textAlign: "center"
+                                        }}
+                                    >
+                                        {expert.firstname} {expert.lastname}
                                     </h3>
-                                </div>
 
-                            </div>
-                        );
-                    })
+                                </div>
+                            );
+                        })}
+                    </div>
                 )}
 
             </div>
